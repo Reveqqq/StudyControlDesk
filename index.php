@@ -25,7 +25,7 @@ if ($_FILES) {
     foreach ($data as $row) {
         $discipline = $db->escape($row[0]);
         $hours = $db->escape($row[2]);
-        $teachers = $db->escape($row[3]);
+        $teacher = $db->escape($row[3]);
         $group = $db->escape($row[4]);
         $db->query("INSERT INTO `data` (`discipline`, `hours`, `teacher`, `group`) VALUES ('$discipline', '$hours','$teacher','$group')");
     }
@@ -76,7 +76,10 @@ $selectedGroup = $_GET['group'];
     if (!empty($teacher) || !empty($group)) {
         $teacher = $db->escape($teacher);
         $group = $db->escape($group);
-        $sql = "SELECT * FROM `data` WHERE " . (!empty($group) ? "`group` = '$group'" : "`teacher` = '$teacher'");
+        $field = !empty($teacher) ? 'teacher' : 'group';
+        $fieldValue = !empty($teacher) ? $teacher : $group;
+        $sql = "SELECT * FROM `data` WHERE `$field` = '$fieldValue'";
+        $sql = "SELECT `$field`, `discipline`, SUM(`hours`) AS `hours` FROM `data` WHERE `$field` = '$fieldValue' GROUP BY `$field`,`discipline`";
         $data = $db->query($sql, MYSQLI_BOTH);
         ?>
         <table>
@@ -87,9 +90,9 @@ $selectedGroup = $_GET['group'];
             </tr>
             <?php foreach ($data as $row) : ?>
                 <tr style='border-bottom:ridge'>
-                    <td><?= $row[!empty($teacher) ? 'teacher' : 'group'] ?></td>
+                    <td><?= $row[0] ?></td>
                     <td><?= $row['discipline'] ?></td>
-                    <td style='text-align:left;'><span style='word-wrap:break-word; float:left; max-width:130px;'><?= $row['hours'] ?></span></td>
+                    <td style='text-align:left;'><span style='word-wrap:break-word; float:left; max-width:130px;'><?= floatval($row['hours']) / 18 ?></span></td>
                 </tr>
             <?php endforeach; ?>
         </table>
