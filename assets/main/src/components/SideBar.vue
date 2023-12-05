@@ -1,0 +1,143 @@
+<script>
+export default {
+  name: 'SideBar',
+  methods: {
+    onLessonsClick() {
+      this.$router.push('/lessons')
+    },
+    onMainMenuClick(){
+      this.$router.push('/main_menu')
+    },
+    onPassedLessonsClick() {
+      this.$router.push('/passed_lessons')
+    }
+  }
+};
+</script>
+
+<template>
+  <aside>
+    <img @click.prevent="onMainMenuClick" src="../../public/images/fefu2.png" style="width: 70px">
+    <a href="javascript:void(0)" @click.prevent="onLessonsClick()">
+      <i class="fa fa-user-o" aria-hidden="true"></i>
+      Занятия
+    </a>
+    <a href="javascript:void(0)" @click.prevent="onPassedLessonsClick()">
+      <i class="fa fa-user-o" aria-hidden="true"></i>
+      Проведённые занятия
+    </a>
+  </aside>
+</template>
+
+<style scoped>
+aside {
+  display: inline-block;
+  color: #fff;
+  width: 300px;
+  left: 0;
+  height: 100vh;
+  border-top-right-radius: 80px;
+  background-color: lightblue;
+}
+
+aside a {
+  font-size: 15px;
+  font-family: 'Ubantu', sans-serif;
+  font-weight: bold;
+  font-style: italic;
+  color: #fff;
+  display: block;
+  padding: 12px 12px 12px 30px;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  display: block;
+  margin: auto;
+}
+
+aside a:hover {
+  color: lightblue;
+  outline: none;
+  position: relative;
+  background: #fff;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+aside a i {
+  margin-right: 5px;
+}
+
+aside a:hover::after {
+  content: "";
+  position: absolute;
+  background-color: transparent;
+  bottom: 100%;
+  right: 0;
+  height: 35px;
+  width: 35px;
+  border-bottom-right-radius: 18px;
+  box-shadow: 0 20px 0 0 #fff;
+}
+
+aside a:hover::before {
+  content: "";
+  position: absolute;
+  background-color: transparent;
+  top: 38px;
+  right: 0;
+  height: 35px;
+  width: 35px;
+  border-top-right-radius: 18px;
+  box-shadow: 0 -20px 0 0 #fff;
+}
+
+aside p {
+  margin: 0;
+  padding: 40px 0;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Ubantu', sans-serif;
+}
+
+.social i:before {
+  width: 14px;
+  height: 14px;
+  font-size: 14px;
+  position: fixed;
+  color: #fff;
+  background: lightblue;
+  padding: 10px;
+  border-radius: 50%;
+  top:5px;
+  right:5px;
+}
+
+h1 {
+  font-family: 'Ubantu', sans-serif;
+  font-style: italic;
+  margin-top: 20px;
+}
+
+p {
+  font-size: 1.2em;
+}
+
+li {
+  list-style-type: none;
+  padding: 5px;
+  margin: 5px;
+  width: 200px;
+  font-size: 1.2em;
+  white-space: nowrap
+}
+</style>
