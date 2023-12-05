@@ -1,0 +1,55 @@
+CREATE TABLE news (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title VARCHAR(255) NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
+    content TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE subjects (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE lessons (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    subject_id INT,
+    date_id INT,
+    group_number INT,
+    start_time TIME,
+    duration INT,
+    FOREIGN KEY (subject_id) REFERENCES subjects(id),
+    FOREIGN KEY (date_id) REFERENCES dates(id)
+);
+
+CREATE TABLE user_lessons (
+    user_id INT,
+    lesson_id INT,
+    PRIMARY KEY (user_id, lesson_id),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (lesson_id) REFERENCES lessons(id)
+);
+
+CREATE TABLE dates (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    lesson_date DATE
+);
+
+CREATE TABLE attendance (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    lesson_id INTEGER,
+    student_id INTEGER,
+    status TEXT CHECK (status IN ('Был', 'Не был')) NOT NULL,
+    FOREIGN KEY (lesson_id) REFERENCES lessons(id),
+    FOREIGN KEY (student_id) REFERENCES users(id)
+);
+
+

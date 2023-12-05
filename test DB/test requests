@@ -1,0 +1,66 @@
+-- Список всех занятий (Frame 4)
+SELECT *
+FROM subjects;
+
+-- Проведённые занятия (Frame 6)
+SELECT lessons.id           AS '№',
+       subjects.name        AS 'Предмет',
+       dates.lesson_date    AS 'Дата',
+       lessons.group_number AS 'Номер группы'
+FROM lessons
+         JOIN
+     subjects ON lessons.subject_id = subjects.id
+         JOIN
+     dates ON lessons.date_id = dates.id;
+
+-- Выбор предмета по нажатию (Frame 5)
+SELECT name AS subject_name
+FROM subjects
+WHERE id = 1;
+
+-- Данные этого предмета по отдельности (Дата:Frame 5)
+SELECT dates.lesson_date as Дата
+FROM lessons
+         JOIN
+     dates ON lessons.date_id = dates.id
+WHERE lessons.subject_id = 1;
+
+-- Данные этого предмета по отдельности (Время:Frame 5)
+SELECT lessons.start_time as Время
+
+FROM lessons
+         JOIN
+     dates ON lessons.date_id = dates.id
+WHERE lessons.subject_id = 1;
+
+-- Данные этого предмета по отдельности (Группа:Frame 5)
+SELECT lessons.group_number as Группа
+FROM lessons
+         JOIN
+     dates ON lessons.date_id = dates.id
+WHERE lessons.subject_id = 1;
+
+-- Посещаемость (Frame 2)
+--Предмет
+SELECT subjects.name      AS Предмет,
+       dates.lesson_date  as Дата,
+       lessons.start_time as Время
+FROM lessons
+         JOIN
+     subjects ON lessons.subject_id = subjects.id
+         JOIN
+     dates ON lessons.date_id = dates.id
+WHERE lessons.subject_id = 1;
+
+-- Вывод таблицы с посещениями
+SELECT attendance.id        AS №,
+       users.username       AS ФИО,
+       lessons.group_number as 'Номер группы',
+       attendance.status    as Статус
+FROM attendance
+         JOIN
+     users ON attendance.student_id = users.id
+         JOIN
+     lessons ON attendance.lesson_id = lessons.id
+WHERE attendance.lesson_id = 1;
+

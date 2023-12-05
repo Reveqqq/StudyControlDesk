@@ -1,0 +1,82 @@
+CREATE TABLE Groups (
+    GroupID INT PRIMARY KEY,
+    GroupName VARCHAR(255),
+    EducationLevel VARCHAR(50),
+    Specialization VARCHAR(255),
+    ProgramID INT,
+    FOREIGN KEY (ProgramID) REFERENCES EducationalPrograms(ProgramID) ON DELETE CASCADE
+);
+
+CREATE TABLE EducationalPrograms (
+    ProgramID INT PRIMARY KEY,
+    ProgramName VARCHAR(255),
+    ProgramType VARCHAR(50),
+    ProgramLeaderID INT,
+    StudyPlan TEXT,
+    FOREIGN KEY (ProgramLeaderID) REFERENCES Teachers(TeacherID) ON DELETE SET NULL
+);
+
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    FullName VARCHAR(255),
+    Gender CHAR(1),
+    GroupID INT,
+    BirthDate DATE,
+    EnrollmentForm VARCHAR(50),
+    CorporateEmail VARCHAR(255),
+    PersonalEmail VARCHAR(255),
+    PhoneNumber VARCHAR(20),
+    RelativePhoneNumber VARCHAR(20),
+    Username VARCHAR(50),
+    ProfilePhoto BLOB,
+    Password VARCHAR(255),
+    FOREIGN KEY (GroupID) REFERENCES Groups(GroupID) ON DELETE SET NULL
+);
+
+
+CREATE TABLE Teachers (
+    TeacherID INT PRIMARY KEY,
+    FullName VARCHAR(255),
+    School VARCHAR(255),
+    Email VARCHAR(255)
+);
+
+CREATE TABLE Subjects (
+    SubjectID INT PRIMARY KEY,
+    SubjectName VARCHAR(255),
+    DepartmentID INT,
+    TeacherID INT,
+    FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID),
+    FOREIGN KEY (TeacherID) REFERENCES Teachers(TeacherID)
+);
+
+CREATE TABLE Departments (
+    DepartmentID INT PRIMARY KEY,
+    DepartmentName VARCHAR(255)
+);
+
+CREATE TABLE GroupSubjects (
+    GroupID INT,
+    SubjectID INT,
+    TeacherID INT,
+    Subgroup VARCHAR(50),
+    CONSTRAINT PK_GroupSubjects PRIMARY KEY (GroupID, SubjectID, TeacherID, Subgroup),
+    FOREIGN KEY (GroupID) REFERENCES Groups(GroupID),
+    FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID),
+    FOREIGN KEY (TeacherID) REFERENCES Teachers(TeacherID)
+);
+
+CREATE TABLE Grades (
+    GradeID INT PRIMARY KEY,
+    StudentID INT,
+    SubjectID INT,
+    TeacherID INT,
+    Subgroup VARCHAR(50),
+    GradeType VARCHAR(50),
+    Grade INT,
+    CONSTRAINT FK_Grades_StudentID FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    CONSTRAINT FK_Grades_SubjectID FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID),
+    CONSTRAINT FK_Grades_TeacherID FOREIGN KEY (TeacherID) REFERENCES Teachers(TeacherID)
+);
+
+
