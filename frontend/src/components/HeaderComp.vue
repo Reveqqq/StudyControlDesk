@@ -1,7 +1,18 @@
 <script>
 
 export default {
-  name: 'HeaderComp'
+  name: 'HeaderComp',
+  methods: {
+    onPassedLessonsClick() {
+      this.$router.push('/passed_lessons')
+    },
+    onAllLessonsClick() {
+      this.$router.push('/lessons')
+    },
+    onLoginClick() {
+      this.$router.push('/')
+    }
+  }
 }
 </script>
 
@@ -13,12 +24,12 @@ export default {
     </div>
     <div class="right">
       <a href="#"><img alt="search" class="image-search" src="../../public/images/search_button.png"></a>
-      <a href="#" class="exit">Выйти</a>
+      <a href="#" class="exit" @click.prevent="onLoginClick">Выйти</a>
     </div>
   </div>
   <nav class="nav">
-    <a href="#" class="links">Список проведённых занятий</a>
-    <a href="#" class="links">Мои занятия</a>
+    <a href="#" class="links" @click.prevent="onPassedLessonsClick()">Список проведённых занятий</a>
+    <a href="#" class="links" @click.prevent="onAllLessonsClick">Мои занятия</a>
   </nav>
 </header>
 </template>
@@ -35,7 +46,8 @@ export default {
 }
 
 .links {
-  padding: 20px;
+  margin-right: 30px;
+  margin-top: 30px;
   text-decoration: none;
   color: black;
   font-family: "Inter", serif;

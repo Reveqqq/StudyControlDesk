@@ -1,10 +1,12 @@
 <script>
 
 import SideBar from "@/components/SideBar.vue";
+import HeaderComp from "@/components/HeaderComp.vue";
+import FooterComp from "@/components/FooterComp.vue";
 
 export default {
   name: 'AllLessons',
-  components: { SideBar },
+  components: {FooterComp, HeaderComp, SideBar },
   methods: {
     onLessonClick() {
       this.$router.push('/lesson')
@@ -14,41 +16,96 @@ export default {
 </script>
 
 <template>
-  <div style="width: 100vw; height: 100vh; position: relative">
-    <SideBar></SideBar>
-    <div style="height: 100vh; display: inline-block; position: absolute; width: 80vw">
-      <h2 style="text-align: center; font-weight: bold;">Список занятий</h2><br><br>
-      <a href="#" @click.prevent="onLessonClick()" style="margin-left: 40px; margin-top: 100px">Математический анализ</a><br>
-      <a style="margin-left: 40px;">Углубленные вопросы математического анализа</a>
-    </div>
+  <HeaderComp></HeaderComp>
+  <div class="container">
+    <h4 class="head">Мои занятия</h4>
+    <p class="temp-week">Текущая неделя: 00 (чётная)</p>
+    <table class="table">
+      <tr>
+        <td><a href="#" class="days">00.00 (пн)</a></td>
+        <td><a href="#" class="days">00.00 (вт)</a></td>
+        <td><a href="#" class="days">00.00 (ср)</a></td>
+        <td><a href="#" class="days">00.00 (чт)</a></td>
+        <td><a href="#" class="days">00.00 (пт)</a></td>
+        <td><a href="#" class="days">00.00 (сб)</a></td>
+        <td><a href="#" class="days">00.00 (вс)</a></td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>
+          <a class="lesson" href="#">Математический анализ (лек.)</a>
+        </td>
+        <td>
+          <select class="selector">
+          <option>Группа 1</option>
+          <option>Группа 2</option>
+          <option>Группа 3</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a class="lesson" href="#">Математический анализ (прак.)</a>
+        </td>
+        <td>
+          <select class="selector">
+          <option>Группа 1</option>
+          <option>Группа 2</option>
+          <option>Группа 3</option>
+        </select>
+        </td>
+      </tr>
+    </table>
   </div>
+  <FooterComp></FooterComp>
 </template>
 
 <style scoped>
-h2 {
-  font-family: 'Ubantu', sans-serif;
-  font-style: italic;
-  margin-top: 45px;
+.container {
+  width: 100vw;
+  height: 87vh;
+  padding-top: 50px;
 }
 
-a {
-  font-size: 1.2em;
+.head {
+  font-family: "DelaGothicOne", serif;
+  margin-bottom: 20px;
 }
 
-body {
-  width: 100%;
-  height: 100vh;
-  margin: 0;
-  overflow: hidden;
-  font-family: 'Ubantu', sans-serif;
+.table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  text-align: center;
+  border-bottom: white;
 }
 
-li {
-  list-style-type: none;
+.temp-week {
+  font-family: "MyriadaPro", serif;
+  font-size: 29px;
+}
+
+.days {
+  margin-right: 45px;
+  text-decoration: none;
+  color: black;
+  font-family: Inter, serif;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.lesson {
+  font-family: "MyriadaPro", serif;
+  font-size: 29px;
+  text-decoration: none;
+  color: black;
+}
+
+.selector {
+  margin-left: 20px;
+  font-family: Inter, serif;
+  display: inline-block;
+  border: none;
   padding: 5px;
-  margin: 5px;
-  width: 200px;
-  font-size: 1.2em;
-  white-space: nowrap
 }
 </style>
