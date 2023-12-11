@@ -19,14 +19,14 @@ export default {
     <div class="wrapper">
       <div class="login">
         <h5 class="head">Регистрация</h5>
-        <label for="username" class="label">Введите своё имя:</label>
-        <input id="username" class="form-control input" type="text">
-        <label for="username" class="label">Введите свою фамилию:</label>
-        <input id="username" class="form-control input" type="text">
-        <label for="username" class="label">Введите своё отчество:</label>
-        <input id="username" class="form-control input" type="text">
-        <label for="username" class="label">Введите свою электронную почту:</label>
-        <input id="username" class="form-control input" type="email">
+        <label for="name" class="label">Введите своё имя:</label>
+        <input id="name" class="form-control input" type="text">
+        <label for="surname" class="label">Введите свою фамилию:</label>
+        <input id="surname" class="form-control input" type="text">
+        <label for="patronymic" class="label">Введите своё отчество:</label>
+        <input id="patronymic" class="form-control input" type="text">
+        <label for="email" class="label">Введите свою электронную почту:</label>
+        <input id="email" class="form-control input" type="email">
         <button class="button" type="submit">Зарегистрироваться</button><br>
         <a class="account" @click.prevent=onLoginClick() href="#">У меня уже есть аккаунт</a>
       </div>
@@ -106,7 +106,7 @@ body {
   color: black;
   display: block;
   text-align: center;
-  margin-top: 27px;
+  margin-top: 30px;
   font-family: Inter, serif;
   font-weight: bolder;
 }

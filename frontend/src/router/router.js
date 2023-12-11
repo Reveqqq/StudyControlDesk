@@ -5,6 +5,7 @@ import AllLessons from "@/views/AllLessons.vue";
 import Lesson from "@/views/Lesson.vue";
 import Attendance from "@/views/Attendance.vue";
 import PassedLessons from "@/views/PassedLessons.vue";
+import Registration from "@/views/Registration.vue";
 const routeInfos = [
     {
         path : "/",
@@ -29,6 +30,10 @@ const routeInfos = [
     {
         path : "/passed_lessons",
         component: PassedLessons
+    },
+    {
+        path: "/registration",
+        component: Registration
     }
 ]
 

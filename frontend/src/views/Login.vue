@@ -27,7 +27,7 @@ export default {
         <input id="username" class="form-control input" type="text">
         <label for="password" class="label">Введите пароль:</label>
         <input id="password" class="form-control input" type="password">
-        <button class="button" type="submit">Войти</button><br>
+        <button class="button" type="submit" @click.prevent=onMainMenuClick()>Войти</button><br>
         <a class="account" @click.prevent=onRegistrationClick() href="#">У меня ещё нет аккаунта</a>
       </div>
     </div>
@@ -68,7 +68,7 @@ body {
 .label {
   margin-left: 25px;
   margin-top: 10px;
-  font-family: Inter, serif;
+  font-family: "Inter", serif;
   font-size: 13px;
   font-weight: bold;
 }
