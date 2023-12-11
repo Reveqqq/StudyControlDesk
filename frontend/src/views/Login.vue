@@ -52,7 +52,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 90vh;
+  height: 85vh;
   margin-top: 10px;
 }
 
@@ -95,14 +95,17 @@ body {
   color: white;
   font-family: "DelaGothicOne", serif;
   margin-top: 50px;
+  box-shadow: 0 2px 3px #a8a8a8;
 }
 
 .account {
-  font-size: 13px;
+  font-size: 12px;
   color: black;
   display: block;
   text-align: center;
-  margin-top: 25px;
+  margin-top: 30px;
+  font-family: Inter, serif;
+  font-weight: bolder;
 }
 
 @font-face {
