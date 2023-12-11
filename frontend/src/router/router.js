@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router"
 import Login from "@/views/Login.vue";
-import MainMenu from "@/views/MainMenu.vue";
+import MainMenu from "@/views/PassedLessons.vue";
 import AllLessons from "@/views/AllLessons.vue";
 import Lesson from "@/views/Lesson.vue";
 import Attendance from "@/views/Attendance.vue";
@@ -10,10 +10,6 @@ const routeInfos = [
     {
         path : "/",
         component: Login
-    },
-    {
-        path : "/main_menu",
-        component: MainMenu
     },
     {
         path : "/lessons",

@@ -6,7 +6,7 @@ export default {
   name: 'Login',
   methods: {
     onMainMenuClick(){
-      this.$router.push('/main_menu')
+      this.$router.push('/passed_lessons')
     },
     onRegistrationClick() {
       this.$router.push('/registration')

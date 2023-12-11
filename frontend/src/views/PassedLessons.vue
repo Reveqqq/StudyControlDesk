@@ -1,75 +1,110 @@
 <script>
-import SideBar from "@/components/SideBar.vue";
+
+import SideBar from "../components/SideBar.vue";
+import HeaderComp from "@/components/HeaderComp.vue";
+import FooterComp from "@/components/FooterComp.vue";
+
 export default {
-  name: 'PassedLessons',
-  components: { SideBar },
-  methods: {
-    onAttendanceClick() {
-      this.$router.push('/attendance')
-    }
-  }
-}
+  name: 'MainMenu',
+  components: { FooterComp, SideBar, HeaderComp }
+};
+
 </script>
 
 <template>
-  <div style="width: 100vw; height: 100vh; position: relative">
-  <SideBar></SideBar>
-    <div style="height: 100vh; display: inline-block; position: absolute; width: 75vw" class="container">
-      <h2 style="text-align: center; font-weight: bold;">Проведённые занятия</h2><br>
-      <div style="height: 80vh">
-        <table class="table table-bordered" id="table" style="text-align: center; position: absolute; margin-left: 30px;">
-          <thead class="table table-bordered">
-          <tr class="table-primary">
-            <th scope="col" class="align-middle">№</th>
-            <th scope="col" class="align-middle">Предмет</th>
-            <th scope="col" class="align-middle">Дата</th>
-            <th scope="col" class="align-middle">Номер группы</th>
-            <th scope="col" class="align-middle">Редактировать</th>
-          </tr>
-          <tr>
-            <td class="align-middle">1</td>
-            <td class="align-middle">Мат. анализ (лек.)</td>
-            <td class="align-middle">01.01.2023</td>
-            <td class="align-middle">Б9122-01.03.02сп</td>
-            <td class="align-middle"><button class="btn btn-class-outline-info shadow-none" type="button" style="border: none;" @click.prevent="onAttendanceClick()">
+  <HeaderComp></HeaderComp>
+  <div class="container">
+    <h4 class="head">Список проведённых занятий</h4>
+    <div class="custom">
+      <table class="table border-black">
+        <thead>
+        <tr>
+          <th scope="col">Предмет</th>
+          <th scope="col">Дата</th>
+          <th scope="col">Номер группы</th>
+          <th scope="col" class="define-border">Редактировать</th>
+        </tr>
+        </thead>
+        <tr>
+          <td>Математический анализ (лек.)</td>
+          <td>00.00.000</td>
+          <td>text</td>
+          <td class="define-border">
+            <a href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+              </svg>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>Математический анализ (прак.)</td>
+          <td>00.00.000</td>
+          <td>text</td>
+          <td class="define-border">
+            <a href="#">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                 <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
               </svg>
-            </button></td>
-          </tr>
-          </thead>
-        </table>
-      </div>
+            </a>
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
+  <FooterComp></FooterComp>
 </template>
 
 <style scoped>
-h2 {
-  font-family: 'Ubantu', sans-serif;
-  font-style: italic;
-  margin-top: 45px;
+.container {
+  width: 100vw;
+  height: 87vh;
+  padding-top: 50px;
 }
 
-body {
-  width: 100%;
-  height: 100vh;
-  margin: 0;
+a {
+  color: black;
+}
+
+.table {
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+th {
+  font-family: "MyriadaPro", serif;
+  font-size: 20px;
+  font-weight: normal;
+  border: 1px solid black;
+  border-left: none;
+  border-top: none;
+}
+
+td {
+  border: 1px solid black;
+  border-left: none;
+  font-family: "Inter", serif;
+  color: black;
+}
+
+.define-border {
+  border-right: none;
+}
+
+.custom {
+  border: 2px solid black;
+  border-radius: 15px;
   overflow: hidden;
-  font-family: 'Ubantu', sans-serif;
 }
 
-p {
-  font-size: 1.2em;
+.head {
+  font-family: "DelaGothicOne", serif;
+  margin-bottom: 30px;
 }
 
-li {
-  list-style-type: none;
-  padding: 5px;
-  margin: 5px;
-  width: 200px;
-  font-size: 1.2em;
-  white-space: nowrap
+tr {
+  text-align: center;
 }
 </style>
