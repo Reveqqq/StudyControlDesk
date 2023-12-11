@@ -7,7 +7,6 @@ export default {
 
 <template>
   <div style="width: 100vw; height: 100vh; position: relative">
-  <SideBar></SideBar>
     <div style="height: 100vh; display: inline-block; position: absolute; width: 75vw" class="container">
       <h2 style="text-align: center; font-weight: bold; padding-top: 30px">Математический анализ (прак.) 01.01.2023 16:50-18:20</h2><br>
       <div style="height: 65vh">
