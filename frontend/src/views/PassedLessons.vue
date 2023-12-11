@@ -1,12 +1,10 @@
 <script>
-
-import SideBar from "../components/SideBar.vue";
 import HeaderComp from "@/components/HeaderComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
 
 export default {
   name: 'MainMenu',
-  components: { FooterComp, SideBar, HeaderComp }
+  components: { FooterComp, HeaderComp }
 };
 
 </script>
@@ -14,7 +12,7 @@ export default {
 <template>
   <HeaderComp></HeaderComp>
   <div class="container">
-    <h4 class="head">Список проведённых занятий</h4>
+    <h3 class="head">Список проведённых занятий</h3>
     <div class="custom">
       <table class="table border-black">
         <thead>

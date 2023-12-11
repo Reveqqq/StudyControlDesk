@@ -1,12 +1,10 @@
 <script>
-
-import SideBar from "@/components/SideBar.vue";
 import HeaderComp from "@/components/HeaderComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
 
 export default {
   name: 'AllLessons',
-  components: {FooterComp, HeaderComp, SideBar },
+  components: {FooterComp, HeaderComp },
   methods: {
     onLessonClick() {
       this.$router.push('/lesson')
@@ -18,7 +16,7 @@ export default {
 <template>
   <HeaderComp></HeaderComp>
   <div class="container">
-    <h4 class="head">Мои занятия</h4>
+    <h3 class="head">Мои занятия</h3>
     <p class="temp-week">Текущая неделя: 00 (чётная)</p>
     <table class="table">
       <tr>
@@ -34,7 +32,7 @@ export default {
     <table>
       <tr>
         <td>
-          <a class="lesson" href="#">Математический анализ (лек.)</a>
+          <a class="lesson" href="#" @click.prevent="onLessonClick()">Математический анализ (лек.)</a>
         </td>
         <td>
           <select class="selector">
@@ -46,7 +44,7 @@ export default {
       </tr>
       <tr>
         <td>
-          <a class="lesson" href="#">Математический анализ (прак.)</a>
+          <a class="lesson" href="#" @click.prevent="onLessonClick()">Математический анализ (прак.)</a>
         </td>
         <td>
           <select class="selector">

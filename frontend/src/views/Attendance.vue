@@ -1,9 +1,6 @@
 <script>
-import SideBar from "@/components/SideBar.vue";
-
 export default {
   name: 'Attendance',
-  components: { SideBar },
 }
 
 </script>
