@@ -1,20 +1,16 @@
 <script>
-
-import FooterComp from "../components/FooterComp.vue";
+import FooterComp from "@/components/FooterComp.vue";
+import Login from "@/views/Login.vue";
 
 export default {
-  name: 'Login',
+  name: 'Registration',
+  components: { FooterComp, Login },
   methods: {
-    onMainMenuClick(){
-      this.$router.push('/main_menu')
-    },
-    onRegistrationClick() {
-      this.$router.push('/registration')
+    onLoginClick() {
+      this.$router.push('/')
     }
-  },
-  components: { FooterComp }
+  }
 }
-
 </script>
 
 <template>
@@ -22,13 +18,17 @@ export default {
     <img alt="department" class="image" src="../../public/images/logo_department.png">
     <div class="wrapper">
       <div class="login">
-        <h5 class="head">Вход</h5>
-        <label for="username" class="label">Введите логин:</label>
+        <h5 class="head">Регистрация</h5>
+        <label for="username" class="label">Введите своё имя:</label>
         <input id="username" class="form-control input" type="text">
-        <label for="password" class="label">Введите пароль:</label>
-        <input id="password" class="form-control input" type="password">
-        <button class="button" type="submit">Войти</button><br>
-        <a class="account" @click.prevent=onRegistrationClick() href="#">У меня ещё нет аккаунта</a>
+        <label for="username" class="label">Введите свою фамилию:</label>
+        <input id="username" class="form-control input" type="text">
+        <label for="username" class="label">Введите своё отчество:</label>
+        <input id="username" class="form-control input" type="text">
+        <label for="username" class="label">Введите свою электронную почту:</label>
+        <input id="username" class="form-control input" type="email">
+        <button class="button" type="submit">Зарегистрироваться</button><br>
+        <a class="account" @click.prevent=onLoginClick() href="#">У меня уже есть аккаунт</a>
       </div>
     </div>
   </div>
@@ -75,7 +75,7 @@ body {
 
 .login {
   width: 330px;
-  height: 370px;
+  height: 515px;
   border: 2px solid black;
   border-radius: 15px;
 }
@@ -106,7 +106,7 @@ body {
   color: black;
   display: block;
   text-align: center;
-  margin-top: 30px;
+  margin-top: 27px;
   font-family: Inter, serif;
   font-weight: bolder;
 }
