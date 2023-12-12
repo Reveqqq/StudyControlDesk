@@ -1,7 +1,4 @@
-<script>
-export default {
-  name: 'FooterComp'
-}
+<script setup>
 </script>
 
 <template>

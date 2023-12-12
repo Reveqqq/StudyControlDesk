@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router"
-import Login from "@/views/Login.vue";
+import Login from "@/views/LoginPage.vue";
 import AllLessons from "@/views/AllLessons.vue";
 import Lesson from "@/views/Lesson.vue";
 import Attendance from "@/views/Attendance.vue";
 import PassedLessons from "@/views/PassedLessons.vue";
-import Registration from "@/views/Registration.vue";
+import Registration from "@/views/RegistrationPage.vue";
 const routeInfos = [
     {
         path : "/",

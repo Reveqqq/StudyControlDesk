@@ -1,16 +1,16 @@
-<script>
+<script setup>
+import {ref} from 'vue';
 import FooterComp from "@/components/FooterComp.vue";
-import Login from "@/views/Login.vue";
+const name = ref('');
+const surname = ref('');
+const patronymic = ref('');
+const mail = ref('');
 
-export default {
-  name: 'Registration',
-  components: { FooterComp, Login },
-  methods: {
-    onLoginClick() {
-      this.$router.push('/')
-    }
-  }
+function onSubmit () {
+      //TODO: Запрос на API на регистрацию
+  window.location.href = '/lessons';
 }
+
 </script>
 
 <template>
@@ -20,15 +20,40 @@ export default {
       <div class="login">
         <h5 class="head">Регистрация</h5>
         <label for="name" class="label">Введите своё имя:</label>
-        <input id="name" class="form-control input" type="text">
+        <input 
+        id="name" 
+        class="form-control input" 
+        type="text"
+        v-model="name"
+        >
         <label for="surname" class="label">Введите свою фамилию:</label>
-        <input id="surname" class="form-control input" type="text">
+        <input 
+        id="surname" 
+        class="form-control input" 
+        type="text"
+        v-model="surname"
+        >
         <label for="patronymic" class="label">Введите своё отчество:</label>
-        <input id="patronymic" class="form-control input" type="text">
+        <input 
+        id="patronymic" 
+        class="form-control input" 
+        type="text"
+        v-model="patronymic"
+        >
         <label for="email" class="label">Введите свою электронную почту:</label>
-        <input id="email" class="form-control input" type="email">
-        <button class="button" type="submit">Зарегистрироваться</button><br>
-        <a class="account" @click.prevent=onLoginClick() href="#">У меня уже есть аккаунт</a>
+        <input 
+        id="email" 
+        class="form-control input" 
+        type="email"
+        v-model="mail"
+        >
+        <button class="button" type="submit" @click.prevent=onSubmit()>Зарегистрироваться</button><br>
+        <router-link
+        to="/"
+        class="account"
+        >
+          <a class="account">У меня уже есть аккаунт</a>
+        </router-link>
       </div>
     </div>
   </div>

@@ -1,16 +1,30 @@
-<script>
+<script setup>
+import {ref, reactive} from 'vue';
 import HeaderComp from "@/components/HeaderComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
 
-export default {
-  name: 'AllLessons',
-  components: {FooterComp, HeaderComp },
-  methods: {
-    onLessonClick() {
-      this.$router.push('/lesson')
-    }
-  }
-}
+//TODO: запрос на API получить текущую дату + четность недели
+const date = ref("11.12 (пн)");
+const state = reactive ({
+  allLessons: [
+    {
+      title: "Математический анализ (лек.)",
+      groups: [
+        "Б9122-01.03.02сп",
+        "Б9122-01.03.02мкт",
+        "Б9122-01.03.02сцт",
+      ]
+    },
+    {
+      title: "Математический анализ (прак.)",
+      groups: [
+        "Б9122-01.03.02сп",
+      ]
+    },
+   ]
+})
+
+
 </script>
 
 <template>
@@ -19,39 +33,33 @@ export default {
     <h3 class="head">Мои занятия</h3>
     <p class="temp-week">Текущая неделя: 00 (чётная)</p>
     <table class="table">
-      <tr>
-        <td><a href="#" class="days">00.00 (пн)</a></td>
-        <td><a href="#" class="days">00.00 (вт)</a></td>
-        <td><a href="#" class="days">00.00 (ср)</a></td>
-        <td><a href="#" class="days">00.00 (чт)</a></td>
-        <td><a href="#" class="days">00.00 (пт)</a></td>
-        <td><a href="#" class="days">00.00 (сб)</a></td>
-        <td><a href="#" class="days">00.00 (вс)</a></td>
+      <tr >
+        <td v-for="n in 7" :key="n">
+            {{date}} <!--TODO: корректно реализовать заполнение даты-->
+        </td>
       </tr>
     </table>
     <table>
-      <tr>
+      <tr 
+      v-for="lessons in state.allLessons" 
+      :key="lessons.id"
+      >
         <td>
-          <a class="lesson" href="#" @click.prevent="onLessonClick()">Математический анализ (лек.)</a>
+          <router-link
+          v-for="title in lessons.title"
+          :key="title.id"
+          to="/lesson"
+          class="lesson"
+          >
+          <a class="lesson">{{title}}</a>
+          </router-link>
         </td>
-        <td>
+        <td> <!--TODO: сделать не selector-ом -->
           <select class="selector">
           <option>Группа 1</option>
           <option>Группа 2</option>
           <option>Группа 3</option>
           </select>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a class="lesson" href="#" @click.prevent="onLessonClick()">Математический анализ (прак.)</a>
-        </td>
-        <td>
-          <select class="selector">
-          <option>Группа 1</option>
-          <option>Группа 2</option>
-          <option>Группа 3</option>
-        </select>
         </td>
       </tr>
     </table>

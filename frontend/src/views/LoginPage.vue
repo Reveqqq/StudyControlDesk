@@ -1,17 +1,12 @@
-<script>
+<script setup>
+import {ref} from 'vue';
 import FooterComp from "../components/FooterComp.vue";
+const username = ref('');
+const password = ref('');
 
-export default {
-  name: 'Login',
-  methods: {
-    onMainMenuClick(){
-      this.$router.push('/passed_lessons')
-    },
-    onRegistrationClick() {
-      this.$router.push('/registration')
-    }
-  },
-  components: { FooterComp }
+function onSubmit () {
+      //TODO: Запрос на API на авторизацию  
+  window.location.href = '/lessons';
 }
 
 </script>
@@ -23,12 +18,27 @@ export default {
       <div class="login">
         <h5 class="head">Вход</h5>
         <label for="username" class="label">Введите логин:</label>
-        <input id="username" class="form-control input" type="text">
+        <input
+        id="username" 
+        class="form-control input" 
+        type="text"
+        v-model="username"
+        >
         <label for="password" class="label">Введите пароль:</label>
-        <input id="password" class="form-control input" type="password">
-        <button class="button" type="submit" @click.prevent=onMainMenuClick()>Войти</button><br>
-        <a class="account" @click.prevent=onRegistrationClick() href="#">У меня ещё нет аккаунта</a>
-      </div>
+        <input 
+        id="password" 
+        class="form-control input" 
+        type="password"
+        v-model="password"
+        >
+        <button class="button" type="submit" @click.prevent=onSubmit()>Войти</button><br>
+        <router-link
+        to="/registration"
+        class="account"
+        >
+          <a class="account">У меня ещё нет аккаунта</a>
+        </router-link>
+        </div>
     </div>
   </div>
   <FooterComp></FooterComp>
