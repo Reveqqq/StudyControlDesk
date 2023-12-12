@@ -1,64 +1,137 @@
 <script>
+import HeaderComp from "@/components/HeaderComp.vue";
+import FooterComp from "@/components/FooterComp.vue";
+
 export default {
   name: 'Attendance',
+  components: {FooterComp, HeaderComp },
 }
 
 </script>
 
 <template>
-  <div style="width: 100vw; height: 100vh; position: relative">
-    <div style="height: 100vh; display: inline-block; position: absolute; width: 75vw" class="container">
-      <h2 style="text-align: center; font-weight: bold; padding-top: 30px">Математический анализ (прак.) 01.01.2023 16:50-18:20</h2><br>
-      <div style="height: 65vh">
-        <table class="table table-bordered" id="table" style="text-align: center; position: absolute; margin-left: 30px;">
-          <thead class="table table-bordered">
-          <tr class="table-primary">
-            <th scope="col" class="align-middle">№</th>
-            <th scope="col" class="align-middle">Студент</th>
-            <th scope="col" class="align-middle">Номер группы</th>
-            <th scope="col" class="align-middle">Статус</th>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>ФИО студента</td>
-            <td>Б9122-01.03.02сп</td>
-            <td>+</td>
-          </tr>
-          </thead>
-        </table>
-      </div>
-      <div class="CenteredButton" style="text-align: center">
-        <a href="#" class="btn btn-primary btn active" role="button" aria-pressed="true">Сохранить</a>
-      </div>
+  <HeaderComp></HeaderComp>
+  <div class="container">
+    <h3 class="head">Предмет</h3>
+    <p class="date">00.00.0000</p>
+    <p class="date">8:20-10:00</p>
+    <div class="custom">
+      <table class="table border-black">
+        <thead>
+        <tr>
+          <th scope="col" class="number"></th>
+          <th scope="col">Студент</th>
+          <th scope="col">Номер группы</th>
+          <th scope="col" class="define-border">Статус</th>
+        </tr>
+        </thead>
+        <tr>
+          <td>1</td>
+          <td>Иванов Иван Иванович</td>
+          <td>text</td>
+          <td class="define-border">+</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Иванов Иван Иванович</td>
+          <td>text</td>
+          <td class="define-border">H</td>
+        </tr>
+      </table>
     </div>
+    <br>
+    <router-link
+        to="/qr"
+        class="button1"
+    >
+    <button class="button1">Вывести QR-код</button>
+    </router-link>
+    <button class="button2">Проведена</button>
   </div>
+  <FooterComp></FooterComp>
 </template>
 
 <style scoped>
-h2 {
-  font-family: 'Ubantu', sans-serif;
-  font-style: italic;
-  margin-top: 20px;
+.container {
+  width: 100vw;
+  height: 87vh;
+  padding-top: 50px;
 }
 
-body {
-  width: 100%;
-  height: 100vh;
-  margin: 0;
+a {
+  color: black;
+}
+
+.table {
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+th {
+  font-family: "MyriadaPro", serif;
+  font-size: 20px;
+  font-weight: normal;
+  border: 1px solid black;
+  border-left: none;
+  border-top: none;
+}
+
+td {
+  border: 1px solid black;
+  border-left: none;
+  font-family: "Inter", serif;
+  color: black;
+}
+
+.define-border {
+  border-right: none;
+}
+
+.custom {
+  border: 2px solid black;
+  border-radius: 15px;
   overflow: hidden;
-  font-family: 'Ubantu', sans-serif;
 }
 
-p {
-  font-size: 1.2em;
+.head {
+  font-family: "DelaGothicOne", serif;
+  margin-bottom: 30px;
+  display: inline-block;
 }
 
-li {
-  list-style-type: none;
-  padding: 5px;
-  margin: 5px;
-  width: 200px;
-  font-size: 1.2em;
-  white-space: nowrap
+tr {
+  text-align: center;
+}
+
+.date {
+  display: inline-block;
+  margin-left: 30px;
+  font-family: MyriadaPro, serif;
+  font-size: 25px;
+}
+
+.number {
+  width: 5%;
+}
+
+.button1 {
+  width: 250px;
+  height: 35px;
+  background-color: #ABDCFF;
+  border: none;
+  font-family: DelaGothicOne, serif;
+  font-size: 15px;
+  color: #2B75B9;
+}
+
+.button2 {
+  width: 250px;
+  float: right;
+  height: 35px;
+  background-color: #ABDCFF;
+  border: none;
+  font-family: DelaGothicOne, serif;
+  font-size: 15px;
+  color: #2B75B9;
 }
 </style>

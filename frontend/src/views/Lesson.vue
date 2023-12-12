@@ -24,7 +24,12 @@ export default {
     <p>Время: 8:30-10:00</p>
     <p>Группа: Б9122-01.03.02сп</p>
     <br>
-    <button class="button">Отметить посещаемость</button>
+    <router-link
+        to="/attendance"
+        class="button"
+    >
+      <button class="button">Отметить посещаемость</button>
+    </router-link>
   </div>
   <FooterComp></FooterComp>
 </template>
@@ -50,11 +55,11 @@ p {
   width: 250px;
   float: right;
   height: 35px;
-  background-color: #b1d9ff;
+  background-color: #ABDCFF;
   border: none;
   font-family: DelaGothicOne, serif;
   font-size: 15px;
-  color: #4786c4;
+  color: #2B75B9;
 }
 
 .ellipse {
