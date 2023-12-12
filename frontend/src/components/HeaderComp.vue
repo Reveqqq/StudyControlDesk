@@ -1,18 +1,4 @@
-<script>
-export default {
-  name: 'HeaderComp',
-  methods: {
-    onPassedLessonsClick() {
-      this.$router.push('/passed_lessons')
-    },
-    onAllLessonsClick() {
-      this.$router.push('/lessons')
-    },
-    onLoginClick() {
-      this.$router.push('/')
-    }
-  }
-}
+<script setup>
 </script>
 
 <template>
@@ -23,12 +9,27 @@ export default {
     </div>
     <div class="right">
       <a href="#"><img alt="search" class="image-search" src="../../public/images/search_button.png"></a>
-      <a href="#" class="exit" @click.prevent="onLoginClick">Выйти</a>
+      <router-link
+      to="/"
+      class="exit"
+      >
+        <a href="#" class="exit">Выйти</a>
+      </router-link>
     </div>
   </div>
-  <nav class="nav">
-    <a href="#" class="links" @click.prevent="onPassedLessonsClick()">Список проведённых занятий</a>
-    <a href="#" class="links" @click.prevent="onAllLessonsClick">Мои занятия</a>
+  <nav class="nav"> 
+    <router-link
+    class="links"
+    to="/passed_lessons"
+    >
+      <a href="#" class="links">Список проведённых занятий</a>
+    </router-link>
+    <router-link
+    class="links"
+    to="/lessons"
+    >
+      <a href="#" class="links">Мои занятия</a>
+    </router-link>
   </nav>
 </header>
 </template>
