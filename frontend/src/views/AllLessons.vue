@@ -15,6 +15,8 @@ export default {
 
 <template>
   <HeaderComp></HeaderComp>
+  <img alt="ellipse" class="ellipse" src="../../public/images/ellipse.png">
+  <img alt="star" class="star" src="../../public/images/star.png">
   <div class="container">
     <h3 class="head">Мои занятия</h3>
     <p class="temp-week">Текущая неделя: 00 (чётная)</p>
@@ -36,9 +38,10 @@ export default {
         </td>
         <td>
           <select class="selector">
-          <option>Группа 1</option>
-          <option>Группа 2</option>
-          <option>Группа 3</option>
+          <option class="option_head" selected disabled label="Группы"></option>
+          <option disabled="disabled">Б9122-01.03.02сп</option>
+          <option disabled="disabled">Б9122-01.03.02мкт</option>
+          <option disabled="disabled">Б9122-01.03.02сцт</option>
           </select>
         </td>
       </tr>
@@ -48,10 +51,11 @@ export default {
         </td>
         <td>
           <select class="selector">
-          <option>Группа 1</option>
-          <option>Группа 2</option>
-          <option>Группа 3</option>
-        </select>
+            <option class="option_head" selected disabled label="Группы"></option>
+            <option disabled="disabled">Б9122-01.03.02сп</option>
+            <option disabled="disabled">Б9122-01.03.02мкт</option>
+            <option disabled="disabled">Б9122-01.03.02сцт</option>
+          </select>
         </td>
       </tr>
     </table>
@@ -66,9 +70,19 @@ export default {
   padding-top: 50px;
 }
 
+option:disabled {
+  color: black;
+  font-family: Inter, serif;
+  font-weight: bold;
+}
+
 .head {
   font-family: "DelaGothicOne", serif;
   margin-bottom: 20px;
+}
+
+.option_head {
+  text-align: center;
 }
 
 .table {
@@ -104,6 +118,25 @@ export default {
   font-family: Inter, serif;
   display: inline-block;
   border: none;
-  padding: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  user-focus: none;
+  user-select: none;
+}
+
+.ellipse {
+  position: absolute;
+  top: 270px;
+  width: 85px;
+  right: 0;
+  z-index: -1;
+}
+
+.star {
+  position: absolute;
+  width: 150px;
+  top: 610px;
+  z-index: -1;
+  right: 0;
 }
 </style>

@@ -15,6 +15,8 @@ export default {
 
 <template>
 <HeaderComp></HeaderComp>
+  <img alt="ellipse" class="ellipse" src="../../public/images/ellipse.png">
+  <img alt="star" class="star" src="../../public/images/star2.png">
   <div class="container">
     <h3 class="head">Предмет</h3>
     <p>Дата: 00.00.0000</p>
@@ -53,5 +55,20 @@ p {
   font-family: DelaGothicOne, serif;
   font-size: 15px;
   color: #4786c4;
+}
+
+.ellipse {
+  position: absolute;
+  top: 270px;
+  width: 85px;
+  right: 0;
+  z-index: -1;
+}
+
+.star {
+  position: absolute;
+  left: 0;
+  top: 550px;
+  z-index: -1;
 }
 </style>
