@@ -5,6 +5,7 @@ import Lesson from "@/views/Lesson.vue";
 import Attendance from "@/views/Attendance.vue";
 import PassedLessons from "@/views/PassedLessons.vue";
 import Registration from "@/views/RegistrationPage.vue";
+import QRcode from "@/views/QRcode.vue";
 const routeInfos = [
     {
         path : "/",
@@ -29,6 +30,10 @@ const routeInfos = [
     {
         path: "/registration",
         component: Registration
+    },
+    {
+        path: "/qr",
+        component: QRcode
     }
 ]
 

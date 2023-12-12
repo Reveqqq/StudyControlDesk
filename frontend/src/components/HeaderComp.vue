@@ -46,6 +46,7 @@
 }
 
 .links {
+  margin-left: 30px;
   margin-right: 30px;
   margin-top: 30px;
   text-decoration: none;
