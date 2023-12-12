@@ -29,13 +29,15 @@ const state = reactive ({
 
 <template>
   <HeaderComp></HeaderComp>
+  <img alt="ellipse" class="ellipse" src="../../public/images/ellipse.png">
+  <img alt="star" class="star" src="../../public/images/star.png">
   <div class="container">
     <h3 class="head">Мои занятия</h3>
     <p class="temp-week">Текущая неделя: 00 (чётная)</p>
     <table class="table">
       <tr >
-        <td v-for="n in 7" :key="n">
-            {{date}} <!--TODO: корректно реализовать заполнение даты-->
+        <td v-for="n in 7" :key="n" class="days">
+            {{ date }} <!--TODO: корректно реализовать заполнение даты-->
         </td>
       </tr>
     </table>
@@ -56,9 +58,10 @@ const state = reactive ({
         </td>
         <td> <!--TODO: сделать не selector-ом -->
           <select class="selector">
-          <option>Группа 1</option>
-          <option>Группа 2</option>
-          <option>Группа 3</option>
+          <option class="option_head" selected disabled>Группа</option>
+          <option disabled="disabled">Б9122-01.03.02сп</option>
+          <option disabled="disabled">Б9122-01.03.02мкт</option>
+          <option disabled="disabled">Б9122-01.03.02сцт</option>
           </select>
         </td>
       </tr>
@@ -72,6 +75,17 @@ const state = reactive ({
   width: 100vw;
   height: 87vh;
   padding-top: 50px;
+}
+
+.option_head {
+  text-align: center;
+  font-family: Inter, serif;
+  font-weight: bold;
+}
+
+option:disabled {
+  font-family: Inter, serif;
+  font-weight: bold;
 }
 
 .head {
@@ -112,6 +126,23 @@ const state = reactive ({
   font-family: Inter, serif;
   display: inline-block;
   border: none;
-  padding: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.ellipse {
+  position: absolute;
+  top: 270px;
+  width: 85px;
+  right: 0;
+  z-index: -1;
+}
+
+.star {
+  position: absolute;
+  right: 0;
+  z-index: -1;
+  width: 150px;
+  top: 620px
 }
 </style>
