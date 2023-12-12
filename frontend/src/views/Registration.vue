@@ -14,6 +14,9 @@ export default {
 </script>
 
 <template>
+  <img alt="line" class="line" src="../../public/images/background_line1.png">
+  <img alt="formula1" class="formula1" src="../../public/images/formula1.png">
+  <img alt="formula2" class="formula2" src="../../public/images/formula2.png">
   <div class="container">
     <img alt="department" class="image" src="../../public/images/logo_department.png">
     <div class="wrapper">
@@ -38,6 +41,25 @@ export default {
 <style scoped>
 body {
   margin: 0;
+}
+
+.line {
+  position: absolute;
+  z-index: -1;
+}
+
+.formula1 {
+  position: absolute;
+  top: 350px;
+  left: 150px;
+  z-index: -1;
+}
+
+.formula2 {
+  position: absolute;
+  left: 1000px;
+  top: 120px;
+  z-index: -1;
 }
 
 .image {
@@ -78,6 +100,7 @@ body {
   height: 515px;
   border: 2px solid black;
   border-radius: 15px;
+  background-color: white;
 }
 
 .input {
