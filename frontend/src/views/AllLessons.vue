@@ -59,9 +59,7 @@ const state = reactive ({
         <td> <!--TODO: сделать не selector-ом -->
           <select class="selector">
           <option class="option_head" selected disabled>Группа</option>
-          <option disabled="disabled">Б9122-01.03.02сп</option>
-          <option disabled="disabled">Б9122-01.03.02мкт</option>
-          <option disabled="disabled">Б9122-01.03.02сцт</option>
+          <option disabled="disabled" v-for="group in lessons.groups">{{ group }}</option>
           </select>
         </td>
       </tr>
@@ -128,6 +126,7 @@ option:disabled {
   border: none;
   padding-top: 5px;
   padding-bottom: 5px;
+  width: 160px;
 }
 
 .ellipse {
