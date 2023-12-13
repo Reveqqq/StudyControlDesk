@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router"
 import Login from "@/views/LoginPage.vue";
 import AllLessons from "@/views/AllLessons.vue";
-import Lesson from "@/views/Lesson.vue";
-import Attendance from "@/views/Attendance.vue";
+import Lesson from "@/views/LessonPage.vue";
+import Attendance from "@/views/AttendancePage.vue";
 import PassedLessons from "@/views/PassedLessons.vue";
 import Registration from "@/views/RegistrationPage.vue";
 import QRcode from "@/views/QRcode.vue";

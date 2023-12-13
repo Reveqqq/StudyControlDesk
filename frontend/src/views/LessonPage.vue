@@ -1,16 +1,20 @@
-<script>
+<script setup>
 import HeaderComp from "@/components/HeaderComp.vue";
-import FooterComp from "@/components/FooterComp.vue";
+import FooterComp from "@/components/FooterComp.vue"; 
+import {ref, reactive} from 'vue';
 
-export default {
-  name: 'Lesson',
-  components: {FooterComp, HeaderComp },
-  methods: {
-    onAttendanceClick() {
-      this.$router.push('/attendance')
-    }
-  }
+const date = ref('11.12.2023');
+const state = reactive({
+  lessonData : {
+  title: 'Математический анализ (лек.)',
+  num: '№1',
+  time: '8:30-10:00',
+  groups: [
+    'Б9122-01.03.02сп'
+  ]
 }
+})
+
 </script>
 
 <template>
@@ -18,11 +22,15 @@ export default {
   <img alt="ellipse" class="ellipse" src="../../public/images/ellipse.png">
   <img alt="star" class="star" src="../../public/images/star2.png">
   <div class="container">
-    <h3 class="head">Предмет</h3>
-    <p>Дата: 00.00.0000</p>
-    <p>Пара №1</p>
-    <p>Время: 8:30-10:00</p>
-    <p>Группа: Б9122-01.03.02сп</p>
+    <h3 class="head">{{ state.lessonData.title }}</h3>
+    <p>Дата: {{ date }}</p>
+    <p>Пара {{ state.lessonData.num }}</p>
+    <p>Время: {{ state.lessonData.time }}</p>
+    <p
+    v-for="group in state.lessonData.groups"
+    :key="group.id"
+    >
+    Группы: {{ group }}</p>
     <br>
     <router-link
         to="/attendance"

@@ -1,20 +1,35 @@
-<script>
+<script setup>
 import HeaderComp from "@/components/HeaderComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
+import {ref, reactive} from 'vue'
 
-export default {
-  name: 'Attendance',
-  components: {FooterComp, HeaderComp },
-}
-
+const date = ref('11.12.2023');
+const state = reactive({
+  lessonData : {
+  title: 'Математический анализ (лек.)',
+  time: '8:30-10:00'
+},
+  students: [
+    {
+      FullName: 'Иван Иванов Иванович',
+      group: 'Б9122-01.03.02сп',
+      status: false
+    },
+    {
+      FullName: 'Иван Иванов Игорьевич',
+      group: 'Б9122-01.03.02мкт',
+      status: false
+    },
+  ]  
+})
 </script>
 
 <template>
   <HeaderComp></HeaderComp>
   <div class="container">
-    <h3 class="head">Предмет</h3>
-    <p class="date">00.00.0000</p>
-    <p class="date">8:20-10:00</p>
+    <h3 class="head">{{state.lessonData.title}}</h3>
+    <p class="date">{{date}}</p>
+    <p class="date">{{state.lessonData.time}}</p>
     <div class="custom">
       <table class="table border-black">
         <thead>
@@ -25,17 +40,14 @@ export default {
           <th scope="col" class="define-border">Статус</th>
         </tr>
         </thead>
-        <tr>
-          <td>1</td>
-          <td>Иванов Иван Иванович</td>
-          <td>text</td>
-          <td class="define-border">+</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Иванов Иван Иванович</td>
-          <td>text</td>
-          <td class="define-border">H</td>
+        <tr
+        v-for="student in state.students"
+        :key="student.id"
+        >
+          <td>{{ }}</td>
+          <td>{{ student.FullName }}</td>
+          <td>{{ student.group }}</td>
+          <td class="define-border">+</td> <!--TODO: сделать чекбоксом-->
         </tr>
       </table>
     </div>
@@ -46,7 +58,12 @@ export default {
     >
     <button class="button1">Вывести QR-код</button>
     </router-link>
-    <button class="button2">Проведена</button>
+    <router-link
+    to="/lessons"
+    >
+      <button class="button2">Проведена</button>
+    </router-link>
+    
   </div>
   <FooterComp></FooterComp>
 </template>

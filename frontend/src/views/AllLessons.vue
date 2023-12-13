@@ -3,8 +3,22 @@ import {ref, reactive} from 'vue';
 import HeaderComp from "@/components/HeaderComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
 
-//TODO: запрос на API получить текущую дату + четность недели
-const date = ref("11.12 (пн)");
+
+//TODO: запрос на API получить пн недели + текущая учебная неделя + данные allLessons
+const week = ref(9)
+const date = ref('11.12.2023');
+const days = [
+  '(пн)',
+  '(вт)',
+  '(ср)',
+  '(чт)',
+  '(пт)',
+  '(сб)',
+  '(вс)'
+];
+var day = date.value.split('.')[0]
+var month = date.value.split('.')[1]
+// var year = date.value.split('.')[2]
 const state = reactive ({
   allLessons: [
     {
@@ -21,6 +35,12 @@ const state = reactive ({
         "Б9122-01.03.02сп",
       ]
     },
+    {
+      title: "Основы приколов (прак.)",
+      groups: [
+        "Б9122-01.03.02мкт"
+      ]
+    }
    ]
 })
 
@@ -33,11 +53,11 @@ const state = reactive ({
   <img alt="star" class="star" src="../../public/images/star.png">
   <div class="container">
     <h3 class="head">Мои занятия</h3>
-    <p class="temp-week">Текущая неделя: 00 (чётная)</p>
+    <p class="temp-week">Текущая неделя: {{week}} {{week % 2 == 0 ? '(чётная)' : '(нечётная)'}}</p>
     <table class="table">
-      <tr >
+      <tr > 
         <td v-for="n in 7" :key="n" class="days">
-            {{ date }} <!--TODO: корректно реализовать заполнение даты-->
+            {{ parseInt(day) + n - 1 + '.' + month + days[n-1]}}
         </td>
       </tr>
     </table>
@@ -56,10 +76,16 @@ const state = reactive ({
           <a class="lesson">{{title}}</a>
           </router-link>
         </td>
-        <td> <!--TODO: сделать не selector-ом -->
+        <td>  
           <select class="selector">
           <option class="option_head" selected disabled>Группа</option>
-          <option disabled="disabled" v-for="group in lessons.groups">{{ group }}</option>
+          <option 
+          disabled="disabled" 
+          v-for="group in lessons.groups"
+          :key="group.id"
+          >
+          {{ group }}
+          </option>
           </select>
         </td>
       </tr>
