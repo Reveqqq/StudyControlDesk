@@ -60,7 +60,7 @@ function onSubmit () {
       </div>
     </div>
   </div>
-  <FooterComp></FooterComp>
+  <FooterComp class="footer"></FooterComp>
 </template>
 
 <style scoped>
@@ -70,20 +70,24 @@ body {
 
 .line {
   position: absolute;
+  width: 100%;
   z-index: -1;
+  top: 100px;
 }
 
 .formula1 {
   position: absolute;
-  top: 350px;
-  left: 150px;
+  top: 400px;
+  left: 11%;
   z-index: -1;
+  width: 22%;
 }
 
 .formula2 {
   position: absolute;
-  left: 1000px;
-  top: 120px;
+  right: 15%;
+  top: 150px;
+  width: 18%;
   z-index: -1;
 }
 
@@ -182,5 +186,26 @@ body {
 @font-face {
   font-family: "Inter";
   src: url("../../public/fonts/Inter-Light.ttf");
+}
+
+@media (max-width: 1000px) {
+  .formula1 {
+    display: none;
+  }
+
+  .formula2 {
+    display: none;
+  }
+
+  .line {
+    display: none;
+  }
+
+}
+
+@media (max-width: 1350px) {
+  .footer {
+    display: none;
+  }
 }
 </style>
