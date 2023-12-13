@@ -47,7 +47,7 @@ const state = reactive({
           <td>{{ }}</td>
           <td>{{ student.FullName }}</td>
           <td>{{ student.group }}</td>
-          <td class="define-border">+</td> <!--TODO: сделать чекбоксом-->
+          <td class="define-border"><input v-model="student.status" type="checkbox"></td> <!--TODO: сделать чекбоксом-->
         </tr>
       </table>
     </div>
@@ -150,5 +150,30 @@ tr {
   font-family: DelaGothicOne, serif;
   font-size: 15px;
   color: #2B75B9;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  display: grid;
+  place-content: center;
+  margin: 0 auto;
+  border: 1px solid black;
+  width: 1em;
+  height: 1em;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  transform: scale(0);
+  width: 0.8em;
+  height: 0.8em;
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em black;
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
 }
 </style>
