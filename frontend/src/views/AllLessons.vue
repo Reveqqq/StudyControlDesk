@@ -71,8 +71,8 @@ const state = reactive ({
       >
         <td>
           <router-link
-          v-for="title in lessons.title"
-          :key="title.id"
+          v-for="(title, index) in lessons.title"
+          :key="index"
           to="/lesson"
           class="lesson"
           >

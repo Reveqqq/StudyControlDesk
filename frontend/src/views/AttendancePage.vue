@@ -41,13 +41,13 @@ const state = reactive({
         </tr>
         </thead>
         <tr
-        v-for="student in state.students"
-        :key="student.id"
+        v-for="(student, index) in state.students"
+        :key="index"
         >
-          <td>{{ }}</td>
+          <td>{{ index + 1 }}</td>
           <td>{{ student.FullName }}</td>
           <td>{{ student.group }}</td>
-          <td class="define-border"><input v-model="student.status" type="checkbox"></td> <!--TODO: сделать чекбоксом-->
+          <td class="define-border"><input v-model="student.status" type="checkbox"></td>
         </tr>
       </table>
     </div>
