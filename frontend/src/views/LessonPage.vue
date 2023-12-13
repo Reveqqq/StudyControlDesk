@@ -27,8 +27,8 @@ const state = reactive({
     <p>Пара {{ state.lessonData.num }}</p>
     <p>Время: {{ state.lessonData.time }}</p>
     <p
-    v-for="group in state.lessonData.groups"
-    :key="group.id"
+    v-for="(group, index) in state.lessonData.groups"
+    :key="index"
     >
     Группы: {{ group }}</p>
     <br>

@@ -44,8 +44,8 @@ const state = reactive ({
         </tr>
         </thead>
         <tr
-        v-for="lesson in state.passedLessons"
-        :key="lesson.id"
+        v-for="(lesson, index) in state.passedLessons"
+        :key="index"
         >
           <td>{{lesson.title}}</td>
           <td>{{lesson.date}}</td>
@@ -53,7 +53,7 @@ const state = reactive ({
             <div
             style="padding: 1%; margin: 1%;"
             v-for="group in lesson.groups"
-            :key="group.id"
+            :key="group"
             >
               {{ group }}
             </div>
