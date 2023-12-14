@@ -1,11 +1,11 @@
 -- Запрос для вывода информации о занятиях для преподавателя
 SELECT
-    lessons.id AS lesson_id,
-    lessons.lesson_number,
-    GROUP_CONCAT(group_number) as group_number ,
+    lessons.id AS id,
+    lessons.lesson_number as num,
+    GROUP_CONCAT(group_number) as groups,
     lessons.time,
-    subjects.name AS subject_name,
-    dates.lesson_date
+    subjects.name AS title,
+    dates.lesson_date as date
 FROM lessons
 JOIN subjects ON lessons.subject_id = subjects.id
 JOIN dates ON lessons.date_id = dates.id
