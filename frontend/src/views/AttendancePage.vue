@@ -38,9 +38,9 @@ watch(status, (newStatus) =>{
     <h3 class="head">{{state.lessonData.title}}</h3>
     <p class="date">{{date}}</p>
     <p class="date">{{state.lessonData.time}}</p>
-    <p class="date">Отметить всех: 
-      <input v-model="status" type="checkbox">
-    </p>  
+    <br>
+    <p class="check_all">Отметить всех:</p>
+    <label for="input" class="checkbox"><input v-model="status" id="input" type="checkbox"></label>
     <div class="custom">
       <table class="table border-black">
         <thead>
@@ -84,6 +84,10 @@ watch(status, (newStatus) =>{
   width: 100vw;
   height: 87vh;
   padding-top: 50px;
+}
+
+.checkbox {
+  display: inline-block;
 }
 
 a {
@@ -138,6 +142,13 @@ tr {
   margin-left: 30px;
   font-family: MyriadaPro, serif;
   font-size: 25px;
+}
+
+.check_all {
+  display: inline-block;
+  font-family: MyriadaPro, serif;
+  font-size: 25px;
+  margin-right: 10px;
 }
 
 .number {
@@ -224,6 +235,10 @@ input[type="checkbox"]:checked::before {
   }
 
   .date {
+    font-size: 20px;
+  }
+
+  .check_all {
     font-size: 20px;
   }
 }
