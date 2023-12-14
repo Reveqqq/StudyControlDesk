@@ -94,7 +94,7 @@ const state = reactive ({
       </tr>
     </table>
   </div>
-  <FooterComp></FooterComp>
+  <FooterComp class="footer"></FooterComp>
 </template>
 
 <style scoped>
@@ -171,6 +171,31 @@ option:disabled {
   right: 0;
   z-index: -1;
   width: 150px;
-  top: 620px
+  top: 83%;
+}
+
+@media (max-width: 1350px) {
+  .footer {
+    display: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .ellipse {
+    display: none;
+  }
+  .star {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .table {
+    display: none;
+  }
+
+  .lesson {
+    font-size: 20px;
+  }
 }
 </style>

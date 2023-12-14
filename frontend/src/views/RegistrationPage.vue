@@ -77,7 +77,7 @@ body {
 
 .formula1 {
   position: absolute;
-  top: 400px;
+  top: 500px;
   left: 11%;
   z-index: -1;
   width: 22%;

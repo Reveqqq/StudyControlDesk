@@ -46,15 +46,15 @@
 }
 
 .links {
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-right: 10px;
+  margin-left: 10px;
   margin-top: 30px;
   text-decoration: none;
   color: black;
   font-family: "Inter", serif;
   font-weight: bold;
   text-align: center;
-  font-size: 15px;
+  font-size: 1em;
 }
 
 .nav {
@@ -63,6 +63,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 10px;
 }
 
 .left {
@@ -95,4 +96,27 @@
   height: 8vh;
 }
 
+@media (max-width: 500px) {
+  .image-logo {
+    display: none;
+  }
+
+  .links {
+    font-size: 0.9em;
+  }
+
+  .image-search {
+    width: 25px;
+  }
+
+  .exit {
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 350px) {
+  .links {
+    font-size: 0.8em;
+  }
+}
 </style>
