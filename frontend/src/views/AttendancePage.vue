@@ -1,9 +1,10 @@
 <script setup>
 import HeaderComp from "@/components/HeaderComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
-import {ref, reactive} from 'vue'
+import {ref, reactive, watch} from 'vue'
 
 const date = ref('11.12.2023');
+const status = ref(false);
 const state = reactive({
   lessonData : {
   title: 'Математический анализ (лек.)',
@@ -22,6 +23,13 @@ const state = reactive({
     },
   ]  
 })
+
+watch(status, (newStatus) =>{
+  state.students.forEach(student => {
+    student.status = newStatus
+  });
+})
+
 </script>
 
 <template>
@@ -30,6 +38,11 @@ const state = reactive({
     <h3 class="head">{{state.lessonData.title}}</h3>
     <p class="date">{{date}}</p>
     <p class="date">{{state.lessonData.time}}</p>
+    <p class="date">Отметить всех: 
+      <input v-model="status" type="checkbox">
+    </p>
+    
+    <!-- <button class="button2">Отметить всех</button> -->
     <div class="custom">
       <table class="table border-black">
         <thead>
