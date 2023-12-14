@@ -1,6 +1,23 @@
+-- Вывод предметов для препода
+SELECT subjects.name
+FROM teacher_subjects
+JOIN subjects ON teacher_subjects.subject_id = subjects.id
+WHERE teacher_subjects.teacher_id = 1;
+
+--Вывод предметов для группы
+SELECT subjects.name
+FROM groups
+JOIN subjects ON groups.subject_id = subjects.id
+WHERE groups.id = 2;
+
 -- Список всех занятий (Frame 4)
 SELECT *
 FROM subjects;
+
+-- Выбор предмета по нажатию (Frame 5)
+SELECT name AS subject_name
+FROM subjects
+WHERE id = 1;
 
 -- Проведённые занятия (Frame 6)
 SELECT lessons.id           AS '№',
@@ -63,4 +80,3 @@ FROM attendance
          JOIN
      lessons ON attendance.lesson_id = lessons.id
 WHERE attendance.lesson_id = 1;
-

@@ -8,7 +8,7 @@
       <jdbc-url>jdbc:sqlite:identifier.sqlite</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="identifier" uuid="7acbdc01-b5bf-4d09-8b0f-ee7fa2253f47">
+    <data-source source="LOCAL" name="identifier" uuid="52f6788d-4837-47cf-bb69-039b51b8edad">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>

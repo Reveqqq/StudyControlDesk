@@ -53,30 +53,3 @@ CREATE TABLE attendance (
 );
 
 
-CREATE TABLE teacher_subjects (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    teacher_id INTEGER,
-    subject_id INTEGER,
-    FOREIGN KEY (teacher_id) REFERENCES users(id),
-    FOREIGN KEY (subject_id) REFERENCES subjects(id)
-);
-
-
-CREATE TABLE groups (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    group_number INT,
-    subject_id INTEGER,
-    FOREIGN KEY (subject_id) REFERENCES subjects(id)
-);
-
-
-CREATE TABLE student_groups (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    student_id INTEGER,
-    group_id INTEGER,
-    FOREIGN KEY (student_id) REFERENCES users(id),
-    FOREIGN KEY (group_id) REFERENCES groups(id)
-);
-
-
-
