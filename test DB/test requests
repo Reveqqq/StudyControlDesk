@@ -23,7 +23,7 @@ WHERE id = 1;
 SELECT lessons.id           AS '№',
        subjects.name        AS 'Предмет',
        dates.lesson_date    AS 'Дата',
-       lessons.group AS 'Номер группы'
+       lessons."group" AS 'Номер группы'
 FROM lessons
          JOIN
      subjects ON lessons.subject_id = subjects.id
@@ -51,7 +51,7 @@ FROM lessons
 WHERE lessons.subject_id = 1;
 
 -- Данные этого предмета по отдельности (Группа:Frame 5)
-SELECT lessons.group as Группа
+SELECT lessons."group" as Группа
 FROM lessons
          JOIN
      dates ON lessons.date_id = dates.id
@@ -72,7 +72,7 @@ WHERE lessons.subject_id = 1;
 -- Вывод таблицы с посещениями
 SELECT attendance.id        AS №,
        users.username       AS ФИО,
-       lessons.group as 'Номер группы',
+       lessons."group" as 'Номер группы',
        attendance.status    as Статус
 FROM attendance
          JOIN
@@ -99,7 +99,7 @@ WHERE teacher_subjects.teacher_id = 1;
 SELECT
     lessons.id,
     lessons.lesson_number AS num,
-    GROUP_CONCAT(lessons.group) AS groups,
+    GROUP_CONCAT(lessons."group") AS groups,
     lessons.time,
     subjects.name AS title,
     dates.lesson_date AS date
@@ -108,3 +108,16 @@ JOIN subjects ON lessons.subject_id = subjects.id
 JOIN dates ON lessons.date_id = dates.id
 WHERE lessons.id = 1;
 
+-- Запрос для вывода информации о занятиях после определённой даты
+SELECT
+    lessons.id,
+    lessons.lesson_number AS num,
+    GROUP_CONCAT(lessons."group") AS groups,
+    lessons.time,
+    subjects.name AS title,
+    dates.lesson_date AS date
+FROM lessons
+JOIN subjects ON lessons.subject_id = subjects.id
+JOIN dates ON lessons.date_id = dates.id
+WHERE dates.lesson_date < CURRENT_DATE
+GROUP BY  dates.lesson_date;
