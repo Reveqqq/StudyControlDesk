@@ -1,3 +1,16 @@
+-- Запрос для вывода информации о занятиях для преподавателя
+SELECT
+    lessons.lesson_number,
+    lessons.group_number,
+    lessons.time,
+    subjects.name AS subject_name,
+    dates.lesson_date
+FROM lessons
+JOIN subjects ON lessons.subject_id = subjects.id
+JOIN dates ON lessons.date_id = dates.id
+JOIN teacher_subjects ON lessons.subject_id = teacher_subjects.subject_id
+WHERE teacher_subjects.teacher_id = 1;
+
 -- Вывод предметов для препода
 SELECT subjects.name
 FROM teacher_subjects

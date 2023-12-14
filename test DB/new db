@@ -24,8 +24,8 @@ CREATE TABLE lessons (
     subject_id INT,
     date_id INT,
     group_number INT,
-    start_time TIME,
-    duration INT,
+    lesson_number INT,
+    time TIME,
     FOREIGN KEY (subject_id) REFERENCES subjects(id),
     FOREIGN KEY (date_id) REFERENCES dates(id)
 );
