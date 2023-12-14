@@ -25,10 +25,11 @@ CREATE TABLE lessons (
     date_id INT,
     group_number INT,
     lesson_number INT,
-    time TIME,
+    time VARCHAR(20),
     FOREIGN KEY (subject_id) REFERENCES subjects(id),
     FOREIGN KEY (date_id) REFERENCES dates(id)
 );
+
 
 CREATE TABLE user_lessons (
     user_id INT,
@@ -64,10 +65,11 @@ CREATE TABLE teacher_subjects (
 
 CREATE TABLE groups (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    group_number INT,
+    group_number VARCHAR(50),
     subject_id INTEGER,
     FOREIGN KEY (subject_id) REFERENCES subjects(id)
 );
+
 
 
 CREATE TABLE student_groups (
@@ -77,6 +79,3 @@ CREATE TABLE student_groups (
     FOREIGN KEY (student_id) REFERENCES users(id),
     FOREIGN KEY (group_id) REFERENCES groups(id)
 );
-
-
-

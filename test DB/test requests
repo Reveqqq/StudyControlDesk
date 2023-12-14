@@ -1,5 +1,6 @@
 -- Запрос для вывода информации о занятиях для преподавателя
 SELECT
+    lessons.id AS lesson_id,
     lessons.lesson_number,
     lessons.group_number,
     lessons.time,
