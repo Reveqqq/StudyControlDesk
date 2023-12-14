@@ -24,7 +24,7 @@ import HeaderComp from "@/components/HeaderComp.vue";
 }
 
 .qrcode {
-  width: 500px;
+  width: 40%;
   display: block;
   margin: 0 auto;
 }
@@ -40,5 +40,12 @@ import HeaderComp from "@/components/HeaderComp.vue";
   display: block;
   margin: 0 auto;
   text-decoration: none;
+}
+
+@media (max-width: 500px) {
+  .button {
+    width: 100px;
+    font-size: 0.9em;
+  }
 }
 </style>

@@ -39,7 +39,7 @@ const state = reactive({
       <button class="button">Отметить посещаемость</button>
     </router-link>
   </div>
-  <FooterComp></FooterComp>
+  <FooterComp class="footer"></FooterComp>
 </template>
 
 <style scoped>
@@ -81,7 +81,22 @@ p {
 .star {
   position: absolute;
   left: 0;
-  top: 550px;
+  bottom: -100px;
   z-index: -1;
+}
+
+@media (max-width: 1350px) {
+  .footer {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .ellipse {
+    display: none;
+  }
+  .star {
+    display: none;
+  }
 }
 </style>

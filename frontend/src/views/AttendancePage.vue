@@ -65,7 +65,7 @@ const state = reactive({
     </router-link>
     
   </div>
-  <FooterComp></FooterComp>
+  <FooterComp class="footer"></FooterComp>
 </template>
 
 <style scoped>
@@ -91,6 +91,7 @@ th {
   border: 1px solid black;
   border-left: none;
   border-top: none;
+  padding: 5px;
 }
 
 td {
@@ -98,6 +99,7 @@ td {
   border-left: none;
   font-family: "Inter", serif;
   color: black;
+  padding: 5px;
 }
 
 .define-border {
@@ -128,7 +130,7 @@ tr {
 }
 
 .number {
-  width: 5%;
+  width: 40px;
 }
 
 .button1 {
@@ -175,5 +177,43 @@ input[type="checkbox"]::before {
 
 input[type="checkbox"]:checked::before {
   transform: scale(1);
+}
+
+@media (max-width: 1350px) {
+  .footer {
+    display: none;
+  }
+}
+
+@media (max-width: 1000px) {
+  .head {
+    display: block;
+  }
+
+  .date {
+    display: inline-block;
+    margin-left: 0;
+    margin-right: 30px;
+  }
+}
+
+@media (max-width: 550px) {
+  .button1, .button2 {
+    width: 120px;
+    font-size: 10px;
+    margin-bottom: 10px;
+  }
+
+  th {
+    font-size: 17px;
+  }
+
+  td {
+    font-size: 12px;
+  }
+
+  .date {
+    font-size: 20px;
+  }
 }
 </style>

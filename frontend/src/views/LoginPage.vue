@@ -192,4 +192,18 @@ body {
     display: none;
   }
 }
+
+@media (max-width: 360px) {
+  .button {
+    width: 250px;
+  }
+
+  .input {
+    width: 250px;
+  }
+
+  .image {
+    width: 250px;
+  }
+}
 </style>

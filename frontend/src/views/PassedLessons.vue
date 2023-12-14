@@ -70,7 +70,7 @@ const state = reactive ({
       </table>
     </div>
   </div>
-  <FooterComp></FooterComp>
+  <FooterComp class="footer"></FooterComp>
 </template>
 
 <style scoped>
@@ -96,6 +96,8 @@ th {
   border: 1px solid black;
   border-left: none;
   border-top: none;
+  word-break: break-all;
+  padding: 5px;
 }
 
 td {
@@ -103,6 +105,8 @@ td {
   border-left: none;
   font-family: "Inter", serif;
   color: black;
+  word-break: break-all;
+  padding: 5px;
 }
 
 .define-border {
@@ -122,5 +126,21 @@ td {
 
 tr {
   text-align: center;
+}
+
+@media (max-width: 1350px) {
+  .footer {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  th {
+    font-size: 17px;
+  }
+
+  td {
+    font-size: 12px;
+  }
 }
 </style>
