@@ -40,9 +40,7 @@ watch(status, (newStatus) =>{
     <p class="date">{{state.lessonData.time}}</p>
     <p class="date">Отметить всех: 
       <input v-model="status" type="checkbox">
-    </p>
-    
-    <!-- <button class="button2">Отметить всех</button> -->
+    </p>  
     <div class="custom">
       <table class="table border-black">
         <thead>
