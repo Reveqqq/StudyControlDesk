@@ -1,30 +1,3 @@
--- Запрос для вывода информации о занятиях по id предмета
-SELECT
-    lessons.id,
-    lessons.lesson_number AS num,
-    GROUP_CONCAT(lessons.group_number) AS groups,
-    lessons.time,
-    subjects.name AS title,
-    dates.lesson_date AS date
-FROM lessons
-JOIN subjects ON lessons.subject_id = subjects.id
-JOIN dates ON lessons.date_id = dates.id
-WHERE lessons.id = 1;
-
--- Запрос для вывода информации о занятиях для преподавателя
-SELECT
-    lessons.id AS id,
-    lessons.lesson_number as num,
-    GROUP_CONCAT(group_number) as groups,
-    lessons.time,
-    subjects.name AS title,
-    dates.lesson_date as date
-FROM lessons
-JOIN subjects ON lessons.subject_id = subjects.id
-JOIN dates ON lessons.date_id = dates.id
-JOIN teacher_subjects ON lessons.subject_id = teacher_subjects.subject_id
-WHERE teacher_subjects.teacher_id = 1;
-
 -- Вывод предметов для препода
 SELECT subjects.name
 FROM teacher_subjects
@@ -50,7 +23,7 @@ WHERE id = 1;
 SELECT lessons.id           AS '№',
        subjects.name        AS 'Предмет',
        dates.lesson_date    AS 'Дата',
-       lessons.group_number AS 'Номер группы'
+       lessons.groupe AS 'Номер группы'
 FROM lessons
          JOIN
      subjects ON lessons.subject_id = subjects.id
@@ -70,7 +43,7 @@ FROM lessons
 WHERE lessons.subject_id = 1;
 
 -- Данные этого предмета по отдельности (Время:Frame 5)
-SELECT lessons.start_time as Время
+SELECT lessons.time as Время
 
 FROM lessons
          JOIN
@@ -78,7 +51,7 @@ FROM lessons
 WHERE lessons.subject_id = 1;
 
 -- Данные этого предмета по отдельности (Группа:Frame 5)
-SELECT lessons.group_number as Группа
+SELECT lessons.groupe as Группа
 FROM lessons
          JOIN
      dates ON lessons.date_id = dates.id
@@ -88,7 +61,7 @@ WHERE lessons.subject_id = 1;
 --Предмет
 SELECT subjects.name      AS Предмет,
        dates.lesson_date  as Дата,
-       lessons.start_time as Время
+       lessons.time as Время
 FROM lessons
          JOIN
      subjects ON lessons.subject_id = subjects.id
@@ -99,7 +72,7 @@ WHERE lessons.subject_id = 1;
 -- Вывод таблицы с посещениями
 SELECT attendance.id        AS №,
        users.username       AS ФИО,
-       lessons.group_number as 'Номер группы',
+       lessons.groupe as 'Номер группы',
        attendance.status    as Статус
 FROM attendance
          JOIN
@@ -107,3 +80,31 @@ FROM attendance
          JOIN
      lessons ON attendance.lesson_id = lessons.id
 WHERE attendance.lesson_id = 1;
+
+-- Запрос для вывода информации о занятиях для преподавателя
+SELECT
+    lessons.id AS id,
+    lessons.lesson_number as num,
+    GROUP_CONCAT(groupe) as groups,
+    lessons.time,
+    subjects.name AS title,
+    dates.lesson_date as date
+FROM lessons
+JOIN subjects ON lessons.subject_id = subjects.id
+JOIN dates ON lessons.date_id = dates.id
+JOIN teacher_subjects ON lessons.subject_id = teacher_subjects.subject_id
+WHERE teacher_subjects.teacher_id = 1;
+
+-- Запрос для вывода информации о занятиях по id предмета
+SELECT
+    lessons.id,
+    lessons.lesson_number AS num,
+    GROUP_CONCAT(lessons.groupe) AS groups,
+    lessons.time,
+    subjects.name AS title,
+    dates.lesson_date AS date
+FROM lessons
+JOIN subjects ON lessons.subject_id = subjects.id
+JOIN dates ON lessons.date_id = dates.id
+WHERE lessons.id = 1;
+
