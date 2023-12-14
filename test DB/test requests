@@ -2,7 +2,7 @@
 SELECT
     lessons.id AS lesson_id,
     lessons.lesson_number,
-    lessons.group_number,
+    GROUP_CONCAT(group_number) as group_number ,
     lessons.time,
     subjects.name AS subject_name,
     dates.lesson_date
