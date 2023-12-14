@@ -112,7 +112,7 @@ WHERE lessons.id = 1;
 SELECT
     lessons.id,
     lessons.lesson_number AS num,
-    GROUP_CONCAT(lessons."group") AS groups,
+    GROUP_CONCAT(DISTINCT lessons."group") AS groups,
     lessons.time,
     subjects.name AS title,
     dates.lesson_date AS date
@@ -120,4 +120,4 @@ FROM lessons
 JOIN subjects ON lessons.subject_id = subjects.id
 JOIN dates ON lessons.date_id = dates.id
 WHERE dates.lesson_date < CURRENT_DATE
-GROUP BY  dates.lesson_date;
+GROUP BY lessons.lesson_number, lessons.time, subjects.name, dates.lesson_date;
