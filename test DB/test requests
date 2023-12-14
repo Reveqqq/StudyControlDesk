@@ -1,3 +1,17 @@
+-- Запрос для вывода информации о занятиях по id предмета
+SELECT
+    lessons.id AS id,
+    lessons.lesson_number as num,
+    GROUP_CONCAT(group_number) as groups,
+    lessons.time,
+    subjects.name AS title,
+    dates.lesson_date as date
+FROM lessons
+JOIN subjects ON lessons.subject_id = subjects.id
+JOIN dates ON lessons.date_id = dates.id
+JOIN teacher_subjects ON lessons.subject_id = teacher_subjects.subject_id
+WHERE lessons.id = 1;
+
 -- Запрос для вывода информации о занятиях для преподавателя
 SELECT
     lessons.id AS id,
