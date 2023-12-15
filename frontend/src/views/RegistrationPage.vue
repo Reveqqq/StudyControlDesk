@@ -224,15 +224,16 @@ body {
 
 @media (max-width: 360px) {
   .button {
-    width: 250px;
+    width: 85%;
+    margin-left: 22px;
   }
 
   .input {
-    width: 250px;
+    width: 85%;
   }
 
   .image {
-    width: 250px;
+    width: 85%;
   }
 }
 </style>
