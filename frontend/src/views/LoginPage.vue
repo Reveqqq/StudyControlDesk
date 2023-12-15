@@ -1,12 +1,21 @@
 <script setup>
 import {ref} from 'vue';
+import axios from 'axios'
+
 import FooterComp from "../components/FooterComp.vue";
 const username = ref('');
 const password = ref('');
-
 function onSubmit () {
-      //TODO: Запрос на API на авторизацию  
-  window.location.href = '/lessons';
+  console.log(process.env.VUE_APP_API_URL + '/token')
+  axios
+      .post(process.env.VUE_APP_API_URL + '/token', {
+        username: username.value,
+        password: password.value,
+      })
+      .catch(function (error) {
+      console.log(error)
+      })
+  //if 200 -> window.location.href = '/lessons';
 }
 
 </script>
