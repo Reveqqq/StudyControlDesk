@@ -1,0 +1,8 @@
+{
+  "appId": "com.idk.app",
+  "appName": "idk",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  }
+}
