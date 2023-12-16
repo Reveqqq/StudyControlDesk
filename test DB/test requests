@@ -93,7 +93,8 @@ FROM lessons
 JOIN subjects ON lessons.subject_id = subjects.id
 JOIN dates ON lessons.date_id = dates.id
 JOIN teacher_subjects ON lessons.subject_id = teacher_subjects.subject_id
-WHERE teacher_subjects.teacher_id = 1;
+WHERE teacher_subjects.teacher_id = 1
+GROUP BY lessons.lesson_number, lessons.time, subjects.name, dates.lesson_date;
 
 -- Запрос для вывода информации о занятиях по id предмета
 SELECT
@@ -106,7 +107,8 @@ SELECT
 FROM lessons
 JOIN subjects ON lessons.subject_id = subjects.id
 JOIN dates ON lessons.date_id = dates.id
-WHERE lessons.id = 1;
+WHERE lessons.id = 1
+GROUP BY lessons.lesson_number, lessons.time, subjects.name, dates.lesson_date;
 
 -- Запрос для вывода информации о занятиях после определённой даты
 SELECT
