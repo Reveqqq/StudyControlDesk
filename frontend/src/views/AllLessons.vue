@@ -2,7 +2,7 @@
 import {ref, reactive, onMounted} from 'vue';
 import HeaderComp from "@/components/HeaderComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
-import {ChangeId} from "@/../static/state"
+import {useLessonStore} from "@/stores/lesson";
 
 onMounted(() => {
   fetch(process.env.VUE_APP_API_URL + '/lessons/my/', {
@@ -31,6 +31,8 @@ const days = [
   '(сб)',
   '(вс)'
 ];
+const store = useLessonStore();
+
 var day = date.value.split('.')[0]
 var month = date.value.split('.')[1]
 const state = reactive ({
@@ -82,7 +84,7 @@ function getMonday(d) {
           to='/lesson'
           class="lesson"
           >
-          <a @click="ChangeId(lesson.id)" class="lesson">{{title}}</a>
+          <a @click="store.changeId(lesson.id)" class="lesson">{{title}}</a>
           </router-link>
         </td>
         <td>  

@@ -1,10 +1,12 @@
 <script setup>
 import HeaderComp from "@/components/HeaderComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
-import {lesson_id} from "@/../static/state"
 import {ref, reactive, onMounted} from 'vue';
+import {useLessonStore} from "@/stores/lesson";
 
 const date = ref(new Date().toLocaleDateString());
+const store = useLessonStore();
+
 const state = reactive({
   lessonData : {
   // title: 'Математический анализ (лек.)',
@@ -18,7 +20,7 @@ const state = reactive({
 
 
 onMounted(() => {
-  fetch(process.env.VUE_APP_API_URL + '/lesson/' + lesson_id.id, {
+  fetch(process.env.VUE_APP_API_URL + '/lesson/' + store.lesson.id, {
     method: 'GET',
     headers : {
        Authorization: 'Bearer ' + localStorage.getItem('token'),
