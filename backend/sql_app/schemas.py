@@ -40,7 +40,7 @@ class lesson(BaseModel):
 class student(BaseModel):
     fio: str
     group: str
-    status: str
+    status: bool
 
 
 class attendance(BaseModel):
@@ -50,7 +50,7 @@ class attendance(BaseModel):
 
 class student_status(BaseModel):
     student_id: int
-    status: str
+    status: bool
 
 
 class attendance_data(BaseModel):
