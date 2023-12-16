@@ -1,4 +1,7 @@
 <script setup>
+function Exit(){
+  localStorage.clear();
+}
 </script>
 
 <template>
@@ -13,7 +16,7 @@
       to="/"
       class="exit"
       >
-        <a href="#" class="exit">Выйти</a>
+        <a @click="Exit()" href="#" class="exit">Выйти</a>
       </router-link>
     </div>
   </div>

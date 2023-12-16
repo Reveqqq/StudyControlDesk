@@ -5,10 +5,23 @@ const name = ref('');
 const surname = ref('');
 const patronymic = ref('');
 const mail = ref('');
+const password = ref('');
 
 function onSubmit () {
-      //TODO: Запрос на API на регистрацию
-  window.location.href = '/lessons';
+  const formData = new URLSearchParams();
+  formData.append('email', mail.value);
+  formData.append('username', name.value);
+  formData.append('password', password.value);
+    fetch(process.env.VUE_APP_API_URL + '/users/', {
+    method: 'POST',
+    body: formData})
+  .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        window.location.href = 'lessons';
+  }).catch(error => {
+    console.error(error);    // Обработка ошибки
+  });
 }
 
 </script>

@@ -4,8 +4,6 @@ import FooterComp from "../components/FooterComp.vue";
 const username = ref('');
 const password = ref('');
 
-
-
 function onSubmit () {
   const formData = new URLSearchParams();
   formData.append('username', username.value);
@@ -13,16 +11,11 @@ function onSubmit () {
   fetch(process.env.VUE_APP_API_URL + '/token', {
     method: 'POST',
     body: formData})
-  .then(response => {
-    if (response.status == 200){
-      //add token to localstorage then redirect page
-    }
-
-    response.json()
-  })
+  .then(response => response.json())
       .then(data => {
-    console.log(data);    // Обработка полученных данных
-  })  .catch(error => {
+        localStorage.setItem('token', data.access_token) //добавили токен в локал стордж
+        window.location.href = 'lessons';
+  }).catch(error => {
     console.error(error);    // Обработка ошибки
   });
 }

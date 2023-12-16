@@ -1,20 +1,37 @@
 <script setup>
 import HeaderComp from "@/components/HeaderComp.vue";
-import FooterComp from "@/components/FooterComp.vue"; 
-import {ref, reactive} from 'vue';
+import FooterComp from "@/components/FooterComp.vue";
+import {lesson_id} from "@/../static/state"
+import {ref, reactive, onMounted} from 'vue';
 
-const date = ref('11.12.2023');
+const date = ref('20.12.2023');
 const state = reactive({
   lessonData : {
-  title: 'Математический анализ (лек.)',
-  num: '№1',
-  time: '8:30-10:00',
-  groups: [
-    'Б9122-01.03.02сп'
-  ]
+  // title: 'Математический анализ (лек.)',
+  // num: '№1',
+  // time: '8:30-10:00', 
+  // groups: [
+  //   'Б9122-01.03.02сп'
+  // ]
 }
 })
 
+
+onMounted(() => {
+  fetch(process.env.VUE_APP_API_URL + '/lesson/' + lesson_id.id, {
+    method: 'GET',
+    headers : {
+       Authorization: 'Bearer ' + localStorage.getItem('token'),
+    }
+  })
+      .then(response => response.json())
+      .then(data => {
+        state.lessonData = data
+        console.log(data);
+      }).catch(error => {
+    console.error(error);    // Обработка ошибки
+  });
+})
 </script>
 
 <template>

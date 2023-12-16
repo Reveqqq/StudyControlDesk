@@ -1,12 +1,27 @@
 <script setup>
-import {ref, reactive} from 'vue';
+import {ref, reactive, onMounted} from 'vue';
 import HeaderComp from "@/components/HeaderComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
+import {ChangeId} from "@/../static/state"
 
+onMounted(() => {
+  fetch(process.env.VUE_APP_API_URL + '/lessons/my/', {
+    method: 'GET',
+    headers : {
+       Authorization: 'Bearer ' + localStorage.getItem('token'),
+    }
+  })
+      .then(response => response.json())
+      .then(data => {
+        state.allLessons = data
+        console.log(data);
+      }).catch(error => {
+    console.error(error);    // Обработка ошибки
+  });
+})
 
-//TODO: запрос на API получить пн недели + текущая учебная неделя + данные allLessons
 const week = ref(9)
-const date = ref('11.12.2023');
+const date = ref('18.12.2023');
 const days = [
   '(пн)',
   '(вт)',
@@ -21,29 +36,16 @@ var month = date.value.split('.')[1]
 // var year = date.value.split('.')[2]
 const state = reactive ({
   allLessons: [
-    {
-      title: "Математический анализ (лек.)",
-      groups: [
-        "Б9122-01.03.02сп",
-        "Б9122-01.03.02мкт",
-        "Б9122-01.03.02сцт",
-      ],
-      conducted: false
-    },
-    {
-      title: "Математический анализ (прак.)",
-      groups: [
-        "Б9122-01.03.02сп",
-      ],
-      conducted: false,
-    },
-    {
-      title: "Основы приколов (прак.)",
-      groups: [
-        "Б9122-01.03.02мкт"
-      ],
-      conducted: false
-    }
+    // {
+    //   title: "Математический анализ (лек.)",
+    //   groups: [
+    //     "Б9122-01.03.02сп",
+    //     "Б9122-01.03.02мкт",
+    //     "Б9122-01.03.02сцт",
+    //   ],
+    //   conducted: false,
+    //   id : 1
+    // },
    ]
 })
 
@@ -65,18 +67,18 @@ const state = reactive ({
       </tr>
     </table>
     <table>
-      <tr 
-      v-for="lessons in state.allLessons" 
-      :key="lessons.id"
+      <tr
+      v-for="lesson in state.allLessons"
+      :key="lesson.id"
       >
         <td>
           <router-link
-          v-for="(title, index) in lessons.title"
+          v-for="(title, index) in lesson.title"
           :key="index"
-          to="/lesson"
+          to='/lesson'
           class="lesson"
           >
-          <a class="lesson">{{title}}</a>
+          <a @click="ChangeId(lesson.id)" class="lesson">{{title}}</a>
           </router-link>
         </td>
         <td>  
@@ -84,7 +86,7 @@ const state = reactive ({
           <option class="option_head" selected disabled>Группа</option>
           <option 
           disabled="disabled" 
-          v-for="group in lessons.groups"
+          v-for="group in lesson.groups"
           :key="group.id"
           >
           {{ group }}
