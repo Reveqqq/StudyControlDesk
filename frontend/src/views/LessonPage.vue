@@ -4,7 +4,7 @@ import FooterComp from "@/components/FooterComp.vue";
 import {lesson_id} from "@/../static/state"
 import {ref, reactive, onMounted} from 'vue';
 
-const date = ref('20.12.2023');
+const date = ref(new Date().toLocaleDateString());
 const state = reactive({
   lessonData : {
   // title: 'Математический анализ (лек.)',

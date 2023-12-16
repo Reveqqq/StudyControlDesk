@@ -21,7 +21,7 @@ onMounted(() => {
 })
 
 const week = ref(9)
-const date = ref('18.12.2023');
+const date = ref(getMonday(new Date()).toLocaleDateString());
 const days = [
   '(пн)',
   '(вт)',
@@ -33,7 +33,6 @@ const days = [
 ];
 var day = date.value.split('.')[0]
 var month = date.value.split('.')[1]
-// var year = date.value.split('.')[2]
 const state = reactive ({
   allLessons: [
     // {
@@ -49,7 +48,12 @@ const state = reactive ({
    ]
 })
 
-
+function getMonday(d) {
+  d = new Date(d);
+  var day = d.getDay(),
+    diff = d.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
+  return new Date(d.setDate(diff));
+}
 </script>
 
 <template>
