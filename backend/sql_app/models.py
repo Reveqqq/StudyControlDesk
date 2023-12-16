@@ -1,5 +1,5 @@
 # coding: utf-8
-from sqlalchemy import Column, Date, Enum, ForeignKey, Integer, String, TIMESTAMP, Table, Text, text
+from sqlalchemy import Boolean, Column, Date, ForeignKey, Integer, String, TIMESTAMP, Table, Text, text
 from sqlalchemy.sql.sqltypes import NullType
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
@@ -91,7 +91,7 @@ class Attendance(Base):
     id = Column(Integer, primary_key=True)
     lesson_id = Column(ForeignKey('lessons.id'))
     student_id = Column(ForeignKey('users.id'))
-    status = Column(Enum('Был', 'Не был'), nullable=False)
+    status = Column(Boolean, nullable=False)
 
     lesson = relationship('Lesson')
     student = relationship('User')
