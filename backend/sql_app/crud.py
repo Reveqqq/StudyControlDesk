@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session, Query
 from sqlalchemy import func
 
 from . import models, schemas
-from function.auth import verify_password
+from backend.function.auth import verify_password
 
 
 def prepare_lessons(query: Query):

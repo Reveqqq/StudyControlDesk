@@ -1,15 +1,15 @@
 from fastapi import Depends, FastAPI, HTTPException, status
 from sqlalchemy.orm import Session
 
-from function.auth import oauth2_scheme, SECRET_KEY, ALGORITHM
-from sql_app import crud, models, schemas
-from sql_app.crud import get_user_name
-from sql_app.database import SessionLocal, engine
+from backend.function.auth import oauth2_scheme, SECRET_KEY, ALGORITHM
+from backend.sql_app import crud, models, schemas
+from backend.sql_app.crud import get_user_name
+from backend.sql_app.database import SessionLocal, engine
 
 from datetime import timedelta
 from typing import Annotated
 from fastapi.security import OAuth2PasswordRequestForm
-from function import auth
+from backend.function import auth
 from jose import JWTError, jwt
 from fastapi.middleware.cors import CORSMiddleware
 

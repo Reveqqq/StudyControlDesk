@@ -1,21 +1,30 @@
 <script setup>
 import {ref} from 'vue';
-import axios from 'axios'
-
 import FooterComp from "../components/FooterComp.vue";
 const username = ref('');
 const password = ref('');
+
+
+
 function onSubmit () {
-  console.log(process.env.VUE_APP_API_URL + '/token')
-  axios
-      .post(process.env.VUE_APP_API_URL + '/token', {
-        username: username.value,
-        password: password.value,
-      })
-      .catch(function (error) {
-      console.log(error)
-      })
-  //if 200 -> window.location.href = '/lessons';
+  const formData = new URLSearchParams();
+  formData.append('username', username.value);
+  formData.append('password', password.value);
+  fetch(process.env.VUE_APP_API_URL + '/token', {
+    method: 'POST',
+    body: formData})
+  .then(response => {
+    if (response.status == 200){
+      //add token to localstorage then redirect page
+    }
+
+    response.json()
+  })
+      .then(data => {
+    console.log(data);    // Обработка полученных данных
+  })  .catch(error => {
+    console.error(error);    // Обработка ошибки
+  });
 }
 
 </script>
