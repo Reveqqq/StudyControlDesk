@@ -47,7 +47,19 @@ def authenticate_user(db: Session, username: str, password: str):
         return False
     return user
 
-
+# SELECT
+#     lessons.id AS id,
+#     lessons.lesson_number as num,
+#     GROUP_CONCAT("group") as groups,
+#     lessons.time,
+#     subjects.name AS title,
+#     dates.lesson_date as date
+# FROM lessons
+# JOIN subjects ON lessons.subject_id = subjects.id
+# JOIN dates ON lessons.date_id = dates.id
+# JOIN teacher_subjects ON lessons.subject_id = teacher_subjects.subject_id
+# WHERE teacher_subjects.teacher_id = 1
+# GROUP BY lessons.lesson_number, lessons.time, subjects.name, dates.lesson_date;
 def get_all_lessons(db: Session, teacher_id: int, passed: bool = False):
     lesson = models.Lesson
     subject = models.Subject
@@ -65,7 +77,11 @@ def get_all_lessons(db: Session, teacher_id: int, passed: bool = False):
         .join(subject)\
         .join(date)\
         .join(teacher_subject)\
-        .where(teacher_subject.teacher_id == teacher_id)
+        .where(teacher_subject.teacher_id == teacher_id)\
+        .group_by(lesson.lesson_number,
+                  lesson.time,
+                  subject.name,
+                  date.lesson_date)
     if passed:
         query = query.where(date.lesson_date < func.current_date())
     lessons = prepare_lessons(query)
