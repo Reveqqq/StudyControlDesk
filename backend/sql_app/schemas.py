@@ -38,6 +38,7 @@ class lesson(BaseModel):
 
 
 class student(BaseModel):
+    id: int
     fio: str
     group: str
     status: bool
