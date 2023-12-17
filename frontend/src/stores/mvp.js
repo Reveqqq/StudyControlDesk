@@ -77,8 +77,10 @@ export const useMvpStore =  defineStore("mvp", () => {
     };
 
     const setDate = (lesId, date) => {
-        state.allLessons[lesId].date = date;
-        state.passedLessons.push(state.allLessons[lesId]);
+        if (state.allLessons[lesId].date === null) {
+            state.allLessons[lesId].date = date;
+            state.passedLessons.push(state.allLessons[lesId]);
+        }
         router.push('/lessons')
     };
 
