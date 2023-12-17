@@ -165,6 +165,7 @@ td {
   border: 2px solid black;
   border-radius: 15px;
   overflow: hidden;
+  background-color: white;
 }
 
 .head {
