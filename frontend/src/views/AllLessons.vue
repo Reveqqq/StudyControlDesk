@@ -20,7 +20,7 @@ onMounted(() => {
   });
 })
 
-const week = ref(9)
+const week = ref(10)
 const date = ref(getMonday(new Date()).toLocaleDateString());
 const days = [
   '(пн)',
@@ -53,7 +53,7 @@ const state = reactive ({
 function getMonday(d) {
   d = new Date(d);
   var day = d.getDay(),
-    diff = d.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
+    diff = d.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
   return new Date(d.setDate(diff));
 }
 </script>
@@ -64,7 +64,7 @@ function getMonday(d) {
   <img alt="star" class="star" src="../../public/images/star.png">
   <div class="container">
     <h3 class="head">Мои занятия</h3>
-    <p class="temp-week">Текущая неделя: {{week}} {{week % 2 == 0 ? '(чётная)' : '(нечётная)'}}</p>
+    <p class="temp-week">Текущая неделя: {{week}} {{week % 2 === 0 ? '(чётная)' : '(нечётная)'}}</p>
     <table class="table">
       <tr > 
         <td v-for="n in 7" :key="n" class="days">
@@ -98,6 +98,13 @@ function getMonday(d) {
           {{ group }}
           </option>
           </select>
+        </td>
+        <td
+        v-if="lesson.date != null"
+        class="lesson"
+        style="padding-left: 7%"
+        >
+          (Проведена)
         </td>
       </tr>
     </table>
