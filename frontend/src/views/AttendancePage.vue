@@ -51,9 +51,15 @@ watch(status, (newStatus) =>{
 })
 
 function onSubmit () {
+  var students = []
+  for(let x in state.students)
+     students.push( (({ student_id, status }) => ({ student_id, status }))(state.students[x]));
+  console.log(JSON.stringify(students));
+
+
   const formData = new URLSearchParams();
   formData.append('lesson_id', store.lesson.id);
-  formData.append('attendances', JSON.stringify(state.students));
+  formData.append('attendances', JSON.stringify(students));
   fetch(process.env.VUE_APP_API_URL + '/attendance', {
     method: 'POST',
     headers : {

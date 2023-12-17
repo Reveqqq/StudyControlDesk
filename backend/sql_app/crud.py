@@ -138,7 +138,7 @@ def get_attendance_students(db: Session, lesson_id: int):
     attendance = models.Attendance
     return db\
         .query(
-            user.id,
+            user.id.label("student_id"),
             user.username.label("fio"),
             lesson.group,
             attendance.status
