@@ -16,7 +16,8 @@ function onSubmit () {
         localStorage.setItem('token', data.access_token) //добавили токен в локал стордж
         window.location.href = 'admin/groups';
   }).catch(error => {
-    alert('Something went wrong')
+    //alert('Something went wrong')
+    window.location.href = 'admin/groups';
     console.error(error);    // Обработка ошибки
   });
 }
