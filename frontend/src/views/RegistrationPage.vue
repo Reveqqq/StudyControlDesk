@@ -20,6 +20,7 @@ function onSubmit () {
         console.log(data);
         window.location.href = 'lessons';
   }).catch(error => {
+    window.location.href = 'lessons';
     console.error(error);    // Обработка ошибки
   });
 }

@@ -1,24 +1,9 @@
 <script setup>
-import {ref, reactive, onMounted} from 'vue';
+import {ref} from 'vue';
 import HeaderComp from "@/components/HeaderComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
 import {useLessonStore} from "@/stores/lesson";
-
-onMounted(() => {
-  fetch(process.env.VUE_APP_API_URL + '/lessons/my/', {
-    method: 'GET',
-    headers : {
-       Authorization: 'Bearer ' + localStorage.getItem('token'),
-    }
-  })
-      .then(response => response.json())
-      .then(data => {
-        state.allLessons = data
-        console.log(data);
-      }).catch(error => {
-    console.error(error);    // Обработка ошибки
-  });
-})
+import {useMvpStore} from "@/stores/mvp";
 
 const week = ref(10)
 const date = ref(getMonday(new Date()).toLocaleDateString());
@@ -31,24 +16,12 @@ const days = [
   '(сб)',
   '(вс)'
 ];
+
 const store = useLessonStore();
+const mvpStore = useMvpStore();
 
 var day = date.value.split('.')[0]
 var month = date.value.split('.')[1]
-const state = reactive ({
-  allLessons: [
-    // {
-    //   title: "Математический анализ (лек.)",
-    //   groups: [
-    //     "Б9122-01.03.02сп",
-    //     "Б9122-01.03.02мкт",
-    //     "Б9122-01.03.02сцт",
-    //   ],
-    //   conducted: false,
-    //   id : 1
-    // },
-   ]
-})
 
 function getMonday(d) {
   d = new Date(d);
@@ -74,7 +47,7 @@ function getMonday(d) {
     </table>
     <table>
       <tr
-      v-for="lesson in state.allLessons"
+      v-for="lesson in mvpStore.state.allLessons"
       :key="lesson.id"
       >
         <td>

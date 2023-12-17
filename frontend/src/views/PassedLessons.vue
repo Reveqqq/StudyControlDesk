@@ -1,49 +1,15 @@
 <script setup>
 import HeaderComp from "@/components/HeaderComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
-import {onMounted, reactive} from 'vue';
+import {reactive} from 'vue';
 import {useLessonStore} from "@/stores/lesson";
+import {useMvpStore} from "@/stores/mvp";
 
 const store = useLessonStore();
+const mvpStore = useMvpStore();
 
 const state = reactive ({
-  passedLessons: [
-    // {
-    //   title: "Математический анализ (лек.)",
-    //   groups: [
-    //     "Б9122-01.03.02сп",
-    //     "Б9122-01.03.02мкт",
-    //     "Б9122-01.03.02сцт",
-    //   ],
-    //   conducted: false, //статус что пара проведена
-    //   date: '13.12.2023'
-    // },
-    // {
-    //   title: "Математический кекс (прак.)",
-    //   groups: [
-    //     "Б9122-01.03.02сп"
-    //
-    //   ],
-    //   conducted: false,
-    //   date: '14.12.2023'
-    // },
-   ]
-})
-
-onMounted(() => {
-  fetch(process.env.VUE_APP_API_URL + '/lessons/passed', {
-    method: 'GET',
-    headers : {
-       Authorization: 'Bearer ' + localStorage.getItem('token'),
-    }
-  })
-      .then(response => response.json())
-      .then(data => {
-        state.passedLessons = data
-        console.log(data);
-      }).catch(error => {
-    console.error(error);    // Обработка ошибки
-  });
+  passedLessons: mvpStore.state.passedLessons
 })
 
 </script>

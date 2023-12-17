@@ -1,39 +1,18 @@
 <script setup>
 import HeaderComp from "@/components/HeaderComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
-import {ref, reactive, onMounted} from 'vue';
+import {ref, reactive} from 'vue';
 import {useLessonStore} from "@/stores/lesson";
+import {useMvpStore} from "@/stores/mvp";
 
 const date = ref(new Date().toLocaleDateString());
 const store = useLessonStore();
+const mvpStore = useMvpStore();
 
 const state = reactive({
-  lessonData : {
-  // title: 'Математический анализ (лек.)',
-  // num: '№1',
-  // time: '8:30-10:00', 
-  // groups: [
-  //   'Б9122-01.03.02сп'
-  // ]
-}
+  lessonData : mvpStore.state.allLessons[store.lesson.id]
 })
 
-
-onMounted(() => {
-  fetch(process.env.VUE_APP_API_URL + '/lesson/' + store.lesson.id, {
-    method: 'GET',
-    headers : {
-       Authorization: 'Bearer ' + localStorage.getItem('token'),
-    }
-  })
-      .then(response => response.json())
-      .then(data => {
-        state.lessonData = data
-        console.log(data);
-      }).catch(error => {
-    console.error(error);    // Обработка ошибки
-  });
-})
 </script>
 
 <template>
@@ -45,11 +24,9 @@ onMounted(() => {
     <p>Дата: {{ date }}</p>
     <p>Пара {{ state.lessonData.num }}</p>
     <p>Время: {{ state.lessonData.time }}</p>
-    <p
-    v-for="(group, index) in state.lessonData.groups"
-    :key="index"
-    >
-    Группы: {{ group }}</p>
+    <p> Группы:
+      {{mvpStore.state.allLessons[store.lesson.id].groups.join(', ')}}
+    </p>
     <br>
     <router-link
         to="/attendance"
