@@ -35,7 +35,7 @@ import FooterComp from "@/components/FooterComp.vue";
     </div>
     <br>
     <router-link
-        to="/add_program"
+        to="/admin/add_program"
     >
       <button type="submit" class="button">Добавить программу</button>
     </router-link>

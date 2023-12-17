@@ -12,6 +12,7 @@ import Teachers from "@/views/Teachers.vue";
 import AddGroup from "@/views/AddGroup.vue";
 import AddEducationalProgram from "@/views/AddEducationalProgram.vue";
 import AddTeacher from "@/views/AddTeacher.vue";
+import AdminLogin from "@/views/AdminLogin.vue";
 const routeInfos = [
     {
         path : "/",
@@ -42,27 +43,31 @@ const routeInfos = [
         component: QRcode
     },
     {
-        path: '/groups',
+        path: '/admin',
+        component: AdminLogin
+    },
+    {
+        path: '/admin/groups',
         component: Groups
     },
     {
-        path: '/programs',
+        path: '/admin/programs',
         component: EducationalPrograms
     },
     {
-        path: '/teachers',
+        path: '/admin/teachers',
         component: Teachers
     },
     {
-        path: '/add_group',
+        path: '/admin/add_group',
         component: AddGroup
     },
     {
-        path: '/add_program',
+        path: '/admin/add_program',
         component: AddEducationalProgram
     },
     {
-        path: '/add_teacher',
+        path: '/admin/add_teacher',
         component: AddTeacher
     }
 ]

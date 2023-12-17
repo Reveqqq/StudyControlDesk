@@ -1,4 +1,4 @@
-<script setup>
+  <script setup>
 function Exit(){
   localStorage.clear();
 }
@@ -21,33 +21,33 @@ function Exit(){
       </div>
     </div>
     <nav class="nav">
+<!--      <router-link-->
+<!--          class="links"-->
+<!--          to="/passed_lessons"-->
+<!--      >-->
+<!--        <a href="#" class="links">Студенты</a>-->
+<!--      </router-link>-->
       <router-link
           class="links"
-          to="/passed_lessons"
-      >
-        <a href="#" class="links">Студенты</a>
-      </router-link>
-      <router-link
-          class="links"
-          to="/groups"
+          to="/admin/groups"
       >
         <a href="#" class="links">Группы</a>
       </router-link>
       <router-link
           class="links"
-          to="/teachers"
+          to="/admin/teachers"
       >
         <a href="#" class="links">Преподаватели</a>
       </router-link>
+<!--      <router-link-->
+<!--          class="links"-->
+<!--          to="/lessons"-->
+<!--      >-->
+<!--        <a href="#" class="links">Предметы</a>-->
+<!--      </router-link>-->
       <router-link
           class="links"
-          to="/lessons"
-      >
-        <a href="#" class="links">Предметы</a>
-      </router-link>
-      <router-link
-          class="links"
-          to="/programs"
+          to="/admin/programs"
       >
         <a href="#" class="links">Образовательные программы</a>
       </router-link>

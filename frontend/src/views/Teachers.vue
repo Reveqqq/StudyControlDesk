@@ -35,7 +35,7 @@ import FooterComp from "@/components/FooterComp.vue";
     </div>
     <br>
     <router-link
-        to="/add_teacher"
+        to="/admin/add_teacher"
     >
       <button type="submit" class="button">Добавить преподавателя</button>
     </router-link>
