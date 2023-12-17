@@ -9,6 +9,9 @@ import QRcode from "@/views/QRcode.vue";
 import Groups from "@/views/Groups.vue";
 import EducationalPrograms from "@/views/EducationalPrograms.vue";
 import Teachers from "@/views/Teachers.vue";
+import AddGroup from "@/views/AddGroup.vue";
+import AddEducationalProgram from "@/views/AddEducationalProgram.vue";
+import AddTeacher from "@/views/AddTeacher.vue";
 const routeInfos = [
     {
         path : "/",
@@ -49,6 +52,18 @@ const routeInfos = [
     {
         path: '/teachers',
         component: Teachers
+    },
+    {
+        path: '/add_group',
+        component: AddGroup
+    },
+    {
+        path: '/add_program',
+        component: AddEducationalProgram
+    },
+    {
+        path: '/add_teacher',
+        component: AddTeacher
     }
 ]
 

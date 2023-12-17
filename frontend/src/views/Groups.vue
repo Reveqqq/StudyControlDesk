@@ -35,7 +35,7 @@ import FooterComp from "@/components/FooterComp.vue";
     </div>
     <br>
     <router-link
-        to="/lessons"
+        to="/add_group"
     >
       <button type="submit" class="button">Добавить группу</button>
     </router-link>
