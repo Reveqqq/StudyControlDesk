@@ -1,27 +1,47 @@
 <script setup>
 import HeaderComp from "@/components/HeaderComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
-import {ref, reactive, watch} from 'vue'
+import {ref, reactive, watch, onMounted} from 'vue'
+import {useLessonStore} from "@/stores/lesson";
 
-const date = ref('11.12.2023');
+const date = ref(new Date().toLocaleDateString());
 const status = ref(false);
+const store = useLessonStore()
+
 const state = reactive({
   lessonData : {
-  title: 'Математический анализ (лек.)',
-  time: '8:30-10:00'
+  // title: 'Математический анализ (лек.)',
+  // time: '8:30-10:00'
 },
   students: [
-    {
-      FullName: 'Иван Иванов Иванович',
-      group: 'Б9122-01.03.02сп',
-      status: false
-    },
-    {
-      FullName: 'Иван Иванов Игорьевич',
-      group: 'Б9122-01.03.02мкт',
-      status: false
-    },
+    // {
+    //   FullName: 'Иван Иванов Иванович',
+    //   group: 'Б9122-01.03.02сп',
+    //   status: false
+    // },
+    // {
+    //   FullName: 'Иван Иванов Игорьевич',
+    //   group: 'Б9122-01.03.02мкт',
+    //   status: false
+    // },
   ]  
+})
+
+onMounted(() => {
+  fetch(process.env.VUE_APP_API_URL + '/attendance/' + store.lesson.id, {
+    method: 'GET',
+    headers : {
+       Authorization: 'Bearer ' + localStorage.getItem('token'),
+    }
+  })
+      .then(response => response.json())
+      .then(data => {
+        state.lessonData = data.lesson
+        state.students = data.students
+        console.log(data);
+      }).catch(error => {
+    console.error(error);    // Обработка ошибки
+  });
 })
 
 watch(status, (newStatus) =>{
@@ -29,6 +49,26 @@ watch(status, (newStatus) =>{
     student.status = newStatus
   });
 })
+
+function onSubmit () {
+  const formData = new URLSearchParams();
+  formData.append('lesson_id', store.lesson.id);
+  formData.append('attendances', JSON.stringify(state.students));
+  fetch(process.env.VUE_APP_API_URL + '/attendance', {
+    method: 'POST',
+    headers : {
+       Authorization: 'Bearer ' + localStorage.getItem('token'),
+    },
+    body: formData},)
+  .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        //window.location.href = 'lessons'; TODO: uncomment when request is correct
+  }).catch(error => {
+    alert('Something went wrong')
+    console.error(error);    // Обработка ошибки
+  });
+}
 
 </script>
 
@@ -56,7 +96,7 @@ watch(status, (newStatus) =>{
         :key="index"
         >
           <td>{{ index + 1 }}</td>
-          <td>{{ student.FullName }}</td>
+          <td>{{ student.fio }}</td>
           <td>{{ student.group }}</td>
           <td class="define-border"><input v-model="student.status" type="checkbox"></td>
         </tr>
@@ -72,7 +112,7 @@ watch(status, (newStatus) =>{
     <router-link
     to="/lessons"
     >
-      <button class="button2">Проведена</button>
+      <button type="submit" @click.prevent="onSubmit()" class="button2">Проведена</button>
     </router-link>
     
   </div>

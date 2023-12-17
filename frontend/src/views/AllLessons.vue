@@ -2,7 +2,7 @@
 import {ref, reactive, onMounted} from 'vue';
 import HeaderComp from "@/components/HeaderComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
-import {ChangeId} from "@/../static/state"
+import {useLessonStore} from "@/stores/lesson";
 
 onMounted(() => {
   fetch(process.env.VUE_APP_API_URL + '/lessons/my/', {
@@ -20,8 +20,8 @@ onMounted(() => {
   });
 })
 
-const week = ref(9)
-const date = ref('18.12.2023');
+const week = ref(10)
+const date = ref(getMonday(new Date()).toLocaleDateString());
 const days = [
   '(пн)',
   '(вт)',
@@ -31,9 +31,10 @@ const days = [
   '(сб)',
   '(вс)'
 ];
+const store = useLessonStore();
+
 var day = date.value.split('.')[0]
 var month = date.value.split('.')[1]
-// var year = date.value.split('.')[2]
 const state = reactive ({
   allLessons: [
     // {
@@ -49,7 +50,12 @@ const state = reactive ({
    ]
 })
 
-
+function getMonday(d) {
+  d = new Date(d);
+  var day = d.getDay(),
+    diff = d.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
+  return new Date(d.setDate(diff));
+}
 </script>
 
 <template>
@@ -58,7 +64,7 @@ const state = reactive ({
   <img alt="star" class="star" src="../../public/images/star.png">
   <div class="container">
     <h3 class="head">Мои занятия</h3>
-    <p class="temp-week">Текущая неделя: {{week}} {{week % 2 == 0 ? '(чётная)' : '(нечётная)'}}</p>
+    <p class="temp-week">Текущая неделя: {{week}} {{week % 2 === 0 ? '(чётная)' : '(нечётная)'}}</p>
     <table class="table">
       <tr > 
         <td v-for="n in 7" :key="n" class="days">
@@ -78,7 +84,7 @@ const state = reactive ({
           to='/lesson'
           class="lesson"
           >
-          <a @click="ChangeId(lesson.id)" class="lesson">{{title}}</a>
+          <a @click="store.changeId(lesson.id)" class="lesson">{{title}}</a>
           </router-link>
         </td>
         <td>  
@@ -92,6 +98,13 @@ const state = reactive ({
           {{ group }}
           </option>
           </select>
+        </td>
+        <td
+        v-if="lesson.date != null"
+        class="lesson"
+        style="padding-left: 7%"
+        >
+          (Проведена)
         </td>
       </tr>
     </table>

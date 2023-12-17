@@ -16,6 +16,7 @@ function onSubmit () {
         localStorage.setItem('token', data.access_token) //добавили токен в локал стордж
         window.location.href = 'lessons';
   }).catch(error => {
+    alert('Something went wrong')
     console.error(error);    // Обработка ошибки
   });
 }
