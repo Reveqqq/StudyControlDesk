@@ -40,7 +40,7 @@ import FooterComp from "@/components/FooterComp.vue";
 <style scoped>
 .container {
   width: 100vw;
-  height: 85vh;
+  height: 87vh;
   padding-top: 50px;
 }
 

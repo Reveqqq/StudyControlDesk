@@ -19,7 +19,7 @@ import HeaderComp from "@/components/HeaderComp.vue";
 <style scoped>
 .container {
   width: 100vw;
-  height: 87vh;
+  height: 85vh;
   padding-top: 50px;
 }
 
