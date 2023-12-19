@@ -155,6 +155,7 @@ tr {
   font-family: DelaGothicOne, serif;
   font-size: 15px;
   color: #2B75B9;
+  margin-bottom: 30px;
 }
 
 .button2 {

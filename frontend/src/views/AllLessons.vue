@@ -39,7 +39,7 @@ function getMonday(d) {
     <h3 class="head">Мои занятия</h3>
     <p class="temp-week">Текущая неделя: {{week}} {{week % 2 === 0 ? '(чётная)' : '(нечётная)'}}</p>
     <table class="table">
-      <tr > 
+      <tr>
         <td v-for="n in 7" :key="n" class="days">
             {{ parseInt(day) + n - 1 + '.' + month + days[n-1]}}
         </td>
@@ -60,7 +60,7 @@ function getMonday(d) {
           <a @click="store.changeId(lesson.id)" class="lesson">{{title}}</a>
           </router-link>
         </td>
-        <td>  
+        <td>
           <select class="selector">
           <option class="option_head" selected disabled>Группа</option>
           <option 
@@ -75,7 +75,7 @@ function getMonday(d) {
         <td
         v-if="lesson.date != null"
         class="lesson"
-        style="padding-left: 7%"
+        style="padding-left: 10%"
         >
           (Проведена)
         </td>
@@ -143,7 +143,7 @@ option:disabled {
   border: none;
   padding-top: 5px;
   padding-bottom: 5px;
-  width: 160px;
+  width: 150px;
 }
 
 .ellipse {
@@ -177,7 +177,7 @@ option:disabled {
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .table {
     display: none;
   }

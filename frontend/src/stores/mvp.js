@@ -123,6 +123,7 @@ export const useMvpStore =  defineStore("mvp", () => {
 
     if (localStorage.getItem("lessons")){
         state.allLessons = JSON.parse(localStorage.getItem("lessons")).allLessons;
+        state.passedLessons = JSON.parse(localStorage.getItem("lessons")).passedLessons;
     }
 
     if (localStorage.getItem("admin")){
