@@ -100,6 +100,7 @@ tr {
 
 a {
   color: black;
+  background-color: transparent;
 }
 
 .ellipse {

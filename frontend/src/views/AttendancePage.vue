@@ -82,6 +82,7 @@ watch(status, (newStatus) =>{
 
 a {
   color: black;
+  background-color: transparent;
 }
 
 .table {

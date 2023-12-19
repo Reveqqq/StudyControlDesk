@@ -72,6 +72,7 @@ const state = reactive ({
 
 a {
   color: black;
+  background-color: transparent;
 }
 
 .table {
