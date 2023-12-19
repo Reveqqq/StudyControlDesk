@@ -1,7 +1,9 @@
 <script setup>
-
 import AdminHeaderComp from "@/components/AdminHeaderComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
+import {useMvpStore} from "@/stores/mvp";
+
+const groups = useMvpStore().adminState.groups;
 </script>
 
 <template>
@@ -19,10 +21,10 @@ import FooterComp from "@/components/FooterComp.vue";
           <th scope="col" class="define-border">Редактировать</th>
         </tr>
         </thead>
-        <tr>
-          <td>Б9122-01.03.02сп</td>
-          <td>Бакалавриат</td>
-          <td>Прикладная математика и информатика</td>
+        <tr v-for="group in groups" :key="group">
+          <td>{{group.title}}</td>
+          <td>{{group.educationalLevel}}</td>
+          <td>{{group.educationalProgram}}</td>
           <td class="define-border">
             <a href="#">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

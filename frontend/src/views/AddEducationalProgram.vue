@@ -1,6 +1,19 @@
 <script setup>
 import AdminHeaderComp from "@/components/AdminHeaderComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
+import {reactive} from "vue";
+import {useMvpStore} from "@/stores/mvp";
+
+const mvpStore = useMvpStore();
+
+const state = reactive({
+  newEdProg:{
+    title: '',
+    educationalLevel: '',
+    director : '',
+  },
+})
+
 </script>
 
 <template>
@@ -14,24 +27,27 @@ import FooterComp from "@/components/FooterComp.vue";
         id="name"
         class="form-control input"
         type="text"
+        v-model="state.newEdProg.title"
     >
     <label for="level" class="label">Уровень образования</label>
     <input
         id="level"
         class="form-control input"
         type="text"
+        v-model="state.newEdProg.educationalLevel"
     >
     <label for="person" class="label">Руководитель программы</label>
     <input
         id="person"
         class="form-control input"
         type="text"
+        v-model="state.newEdProg.director"
     >
     <br>
     <router-link
-        to="/lessons"
+        to="/admin/programs"
     >
-      <button type="submit" class="button">Добавить программу</button>
+      <button @click="mvpStore.addEdProg(state.newEdProg)" type="submit" class="button">Добавить программу</button>
     </router-link>
   </div>
   <FooterComp class="footer"></FooterComp>

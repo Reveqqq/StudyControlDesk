@@ -1,6 +1,19 @@
 <script setup>
 import AdminHeaderComp from "@/components/AdminHeaderComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
+import {reactive} from "vue";
+import {useMvpStore} from "@/stores/mvp";
+
+const mvpStore = useMvpStore();
+
+const state = reactive({
+  newGroup:{
+    title: '',
+    educationalLevel: '',
+    educationalProgram : '',
+  },
+})
+
 </script>
 
 <template>
@@ -14,24 +27,27 @@ import FooterComp from "@/components/FooterComp.vue";
         id="name"
         class="form-control input"
         type="text"
+        v-model="state.newGroup.title"
     >
     <label for="level" class="label">Уровень образования</label>
     <input
         id="level"
         class="form-control input"
         type="text"
+        v-model="state.newGroup.educationalLevel"
     >
     <label for="program" class="label">Образовательная программа</label>
     <input
         id="program"
         class="form-control input"
         type="text"
+        v-model="state.newGroup.educationalProgram"
     >
     <br>
     <router-link
-        to="/lessons"
+        to="/admin/groups"
     >
-      <button type="submit" class="button">Добавить группу</button>
+      <button @click="mvpStore.addGroup(state.newGroup)" type="submit" class="button">Добавить группу</button>
     </router-link>
   </div>
   <FooterComp class="footer"></FooterComp>

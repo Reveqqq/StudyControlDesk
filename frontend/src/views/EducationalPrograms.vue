@@ -1,7 +1,9 @@
 <script setup>
-
 import AdminHeaderComp from "@/components/AdminHeaderComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
+import {useMvpStore} from "@/stores/mvp";
+
+const educationalPrograms = useMvpStore().adminState.educationalPrograms;
 </script>
 
 <template>
@@ -19,10 +21,10 @@ import FooterComp from "@/components/FooterComp.vue";
           <th scope="col" class="define-border">Редактировать</th>
         </tr>
         </thead>
-        <tr>
-          <td>Прикладная математика и информатика</td>
-          <td>Бакалавриат</td>
-          <td>Сущенко Андрей Андреевич</td>
+        <tr v-for="val in educationalPrograms" :key="val">
+          <td>{{ val.title }}</td>
+          <td>{{ val.educationalLevel }}</td>
+          <td>{{ val.director }}</td>
           <td class="define-border">
             <a href="#">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

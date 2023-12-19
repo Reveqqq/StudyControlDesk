@@ -1,7 +1,9 @@
 <script setup>
-
 import AdminHeaderComp from "@/components/AdminHeaderComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
+import {useMvpStore} from "@/stores/mvp";
+
+const teachers = useMvpStore().adminState.teachers;
 </script>
 
 <template>
@@ -19,10 +21,10 @@ import FooterComp from "@/components/FooterComp.vue";
           <th scope="col" class="define-border">Редактировать</th>
         </tr>
         </thead>
-        <tr>
-          <td>Зиновьев Павел Владимирович</td>
-          <td>Политехнический институт</td>
-          <td>zinovev.pv@dvfu.ru</td>
+        <tr v-for="teacher in teachers" :key="teacher">
+          <td>{{ teacher.fullname }}</td>
+          <td>{{ teacher.school }}</td>
+          <td>{{ teacher.mail }}</td>
           <td class="define-border">
             <a href="#">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

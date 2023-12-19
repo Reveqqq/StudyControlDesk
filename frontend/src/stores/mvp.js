@@ -72,6 +72,39 @@ export const useMvpStore =  defineStore("mvp", () => {
         ]
     });
 
+    const adminState = reactive({
+        groups: [{
+            title: 'Б9122-01.03.02сп',
+            educationalLevel: 'Бакалавриат',
+            educationalProgram : 'Прикладная математика и информатика',
+        },
+        ],
+        teachers: [{
+            fullname: 'Зиновьев Павел Владимирович',
+            school: 'Институт Математики и Компьютерных Технологий',
+            mail: 'zinovev.pv@dvfu.ru',
+        },
+        ],
+        educationalPrograms: [{
+            title: 'Прикладная математика и информатика',
+            educationalLevel: 'Бакалавриат',
+            director: 'Сущенко Андрей Андреевич',
+        },
+        ],
+    })
+
+    const addGroup = (newGroup) => {
+        adminState.groups.push(newGroup);
+    }
+
+    const addTeacher = (newTeacher) => {
+        adminState.teachers.push(newTeacher);
+    }
+
+    const addEdProg = (newEdProg) => {
+        adminState.educationalPrograms.push(newEdProg);
+    }
+
     const setStatus = (lesId, studId) => {
         studentsState.students[lesId][studId] = !studentsState.students[lesId][studId];
     };
@@ -92,6 +125,12 @@ export const useMvpStore =  defineStore("mvp", () => {
         state.allLessons = JSON.parse(localStorage.getItem("lessons")).allLessons;
     }
 
+    if (localStorage.getItem("admin")){
+        adminState.groups = JSON.parse(localStorage.getItem("admin")).groups;
+        adminState.teachers = JSON.parse(localStorage.getItem("admin")).teachers;
+        adminState.educationalPrograms = JSON.parse(localStorage.getItem("admin")).educationalPrograms;
+    }
+
     watch(
         studentsState,
         (studentsVal) => {
@@ -108,11 +147,22 @@ export const useMvpStore =  defineStore("mvp", () => {
         {deep: true }
     );
 
+    watch(
+        adminState,
+        (adminVal) => {
+            localStorage.setItem("admin", JSON.stringify(adminVal))
+        },
+        {deep: true }
+    );
+
     return {
         state,
         studentsState,
+        adminState,
         setStatus,
         setDate,
-
+        addGroup,
+        addTeacher,
+        addEdProg,
     }
 });
