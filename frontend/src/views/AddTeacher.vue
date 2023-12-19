@@ -1,6 +1,19 @@
 <script setup>
 import AdminHeaderComp from "@/components/AdminHeaderComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
+import {reactive} from "vue";
+import {useMvpStore} from "@/stores/mvp";
+
+const mvpStore = useMvpStore();
+
+const state = reactive({
+  newTeacher:{
+    fullname: '',
+    school: '',
+    mail : '',
+  },
+})
+
 </script>
 
 <template>
@@ -14,24 +27,27 @@ import FooterComp from "@/components/FooterComp.vue";
         id="name"
         class="form-control input"
         type="text"
+        v-model="state.newTeacher.fullname"
     >
     <label for="department" class="label">Школа/институт</label>
     <input
         id="department"
         class="form-control input"
         type="text"
+        v-model="state.newTeacher.school"
     >
     <label for="mail" class="label">E-mail</label>
     <input
         id="mail"
         class="form-control input"
         type="email"
+        v-model="state.newTeacher.mail"
     >
     <br>
     <router-link
-        to="/lessons"
+        to="/admin/teachers"
     >
-      <button type="submit" class="button">Добавить преподавателя</button>
+      <button @click="mvpStore.addTeacher(state.newTeacher)" type="submit" class="button">Добавить преподавателя</button>
     </router-link>
   </div>
   <FooterComp class="footer"></FooterComp>
