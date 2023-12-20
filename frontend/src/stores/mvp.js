@@ -78,6 +78,16 @@ export const useMvpStore =  defineStore("mvp", () => {
             educationalLevel: 'Бакалавриат',
             educationalProgram : 'Прикладная математика и информатика',
         },
+        {
+            title: 'Б9122-01.03.02мкт',
+            educationalLevel: 'Бакалавриат',
+            educationalProgram : 'Прикладная математика и информатика',
+        },
+        {
+            title: 'Б9122-01.03.02сцт',
+            educationalLevel: 'Бакалавриат',
+            educationalProgram : 'Прикладная математика и информатика',
+        },
         ],
         teachers: [{
             fullname: 'Зиновьев Павел Владимирович',
